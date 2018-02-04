@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Inventory.Forms.Properties {
+namespace Inventory.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,17 +20,6 @@ namespace Inventory.Forms.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=\"C:\\Users\\Ivan Grgurina\\Documents\\Visual Studio 2017\\Projects\\Invento" +
-            "ry\\Inventory._\\App_Data\\Inventory.db\";failifmissing=False")]
-        public string DefaultConnection {
-            get {
-                return ((string)(this["DefaultConnection"]));
             }
         }
     }

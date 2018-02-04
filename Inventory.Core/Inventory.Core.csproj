@@ -32,15 +32,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Controllers\IMainFormController.cs" />
+    <Compile Include="Presentation\Create\IAddNewCategoryView.cs" />
+    <Compile Include="Presentation\Create\IAddNewEquipmentView.cs" />
+    <Compile Include="Presentation\Create\IAddNewUserView.cs" />
+    <Compile Include="Presentation\Read\IShowEquipmentListView.cs" />
+    <Compile Include="Presentation\Read\IShowUserListView.cs" />
+    <Compile Include="Factories\IWindowFormsFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,5 +50,6 @@
       <Name>Inventory.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
