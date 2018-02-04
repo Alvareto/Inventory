@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory\Inventory.csproj", "{4B08DA85-1282-4C08-AF89-EC3CC6D18999}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Tests", "Inventory.Tests\Inventory.Tests.csproj", "{3C0CEB32-D6D8-496E-9D86-E9957CADC329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Forms", "Inventory.Forms\Inventory.Forms.csproj", "{816A9F65-631E-4462-A881-DCF52FC5761D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Controllers", "Inventory.Controllers\Inventory.Controllers.csproj", "{34C7CA14-D08F-458C-8EC1-0C398EBEA890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Model", "Inventory.Model\Inventory.Model.csproj", "{94CFC396-E408-48AE-9FD8-E1B26B0FB791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.SQLiteDAL", "Inventory.SQLiteDAL\Inventory.SQLiteDAL.csproj", "{A5AAEFB9-CB84-41F4-8EA3-6FD13E24A793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Core", "Inventory.Core\Inventory.Core.csproj", "{9D5D791A-CECC-4107-A6D1-EA748CFC7001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +21,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B08DA85-1282-4C08-AF89-EC3CC6D18999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B08DA85-1282-4C08-AF89-EC3CC6D18999}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B08DA85-1282-4C08-AF89-EC3CC6D18999}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B08DA85-1282-4C08-AF89-EC3CC6D18999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C0CEB32-D6D8-496E-9D86-E9957CADC329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0CEB32-D6D8-496E-9D86-E9957CADC329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0CEB32-D6D8-496E-9D86-E9957CADC329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0CEB32-D6D8-496E-9D86-E9957CADC329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{816A9F65-631E-4462-A881-DCF52FC5761D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{816A9F65-631E-4462-A881-DCF52FC5761D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{816A9F65-631E-4462-A881-DCF52FC5761D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{816A9F65-631E-4462-A881-DCF52FC5761D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34C7CA14-D08F-458C-8EC1-0C398EBEA890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C7CA14-D08F-458C-8EC1-0C398EBEA890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C7CA14-D08F-458C-8EC1-0C398EBEA890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C7CA14-D08F-458C-8EC1-0C398EBEA890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CFC396-E408-48AE-9FD8-E1B26B0FB791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CFC396-E408-48AE-9FD8-E1B26B0FB791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CFC396-E408-48AE-9FD8-E1B26B0FB791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CFC396-E408-48AE-9FD8-E1B26B0FB791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AAEFB9-CB84-41F4-8EA3-6FD13E24A793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AAEFB9-CB84-41F4-8EA3-6FD13E24A793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AAEFB9-CB84-41F4-8EA3-6FD13E24A793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AAEFB9-CB84-41F4-8EA3-6FD13E24A793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5D791A-CECC-4107-A6D1-EA748CFC7001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5D791A-CECC-4107-A6D1-EA748CFC7001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5D791A-CECC-4107-A6D1-EA748CFC7001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5D791A-CECC-4107-A6D1-EA748CFC7001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
