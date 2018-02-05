@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Inventory.Core;
 using Inventory.Model;
@@ -72,8 +71,7 @@ namespace Inventory.Controllers
         public void Transfer(ITransferEquipmentView inForm)
         {
             if (inForm.Display(_equipmentRepository.GetAll().ToList()
-                , _userRepository.GetAllActive().ToList()
-                , null))// _equipmentRepository.MapInventory()))
+                , _userRepository.GetAllActive().ToList()))
             {
                 try
                 {

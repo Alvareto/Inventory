@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 
 namespace Inventory
 {
@@ -70,7 +65,7 @@ namespace Inventory
             }
         }
 
-        public virtual string UserName => $"{Users?.FirstName} {Users?.LastName}";
+        public virtual string UserName => Users?.Name;
         //public virtual string EquipmentName => $"[{Equipments?.CategoryName}] {Equipments?.Name}";
         public virtual bool Assigned => !_DateTo.HasValue;
 

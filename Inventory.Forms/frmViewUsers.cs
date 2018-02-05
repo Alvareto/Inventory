@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory.Core;
-using Inventory.Model;
 
 namespace Inventory.Forms
 {
@@ -73,6 +68,19 @@ namespace Inventory.Forms
                 listEquipment.DataSource = equipmentBindingSource;
                 listEquipment.Update();
             };
+
+            listEquipment.Columns["Users"].Visible = false;
+            listEquipment.Columns["Category"].Visible = false;
+            listEquipment.Columns["CurrentInventory"].Visible = false;
+            listEquipment.Columns["CurrentInventoryUser"].Visible = false;
+
+            listInventory.Columns["Users"].Visible = false;
+            listInventory.Columns["Equipments"].Visible = false;
+
+            listUser.Columns["Equipments"].Visible = false;
+            listUser.Columns["FirstName"].Visible = false;
+            listUser.Columns["LastName"].Visible = false;
+            listUser.Columns["Inventory"].Visible = false;
 
             this.Show();
         }

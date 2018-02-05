@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Inventory;
 using Inventory.Controllers;
 using Inventory.Forms;
-using Inventory.Model;
 using Inventory.SQLiteDAL;
 
 namespace Inventory

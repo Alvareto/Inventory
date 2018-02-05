@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Inventory.Core.Constants" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Inventory.Core.IInventoryController" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\IInventoryController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IMainFormController" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAQAAAAAAAAABAAAAAAAIAAgAAQAAAAABAA=</HashCode>
+      <FileName>Controllers\IMainFormController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IWindowFormsFactory" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAQABAAAAAAAAAAAAAAAQAAAIAAAKAAAAAAQ=</HashCode>
+      <FileName>Factories\IWindowFormsFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IAddNewCategoryView" Collapsed="true">
+    <Position X="7" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAACAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Presentation\Create\IAddNewCategoryView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IAddNewEquipmentView" Collapsed="true">
+    <Position X="7" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAFAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presentation\Create\IAddNewEquipmentView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IAddNewUserView" Collapsed="true">
+    <Position X="7" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Presentation\Create\IAddNewUserView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IDeactivateUserView" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAAAI=</HashCode>
+      <FileName>Presentation\Delete\IDeactivateUserView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IDisposeEquipmentView" Collapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAEAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presentation\Delete\IDisposeEquipmentView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IShowEquipmentListView" Collapsed="true">
+    <Position X="2.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presentation\Read\IShowEquipmentListView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IShowUserListView" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presentation\Read\IShowUserListView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.IAssignEquipmentView" Collapsed="true">
+    <Position X="4.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAIAAAAAEAAA=</HashCode>
+      <FileName>Presentation\Update\IAssignEquipmentView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Inventory.Core.ITransferEquipmentView" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAQAAAAAAAAAABAAAAAAECAA=</HashCode>
+      <FileName>Presentation\Update\ITransferEquipmentView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

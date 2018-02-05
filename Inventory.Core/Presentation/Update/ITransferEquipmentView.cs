@@ -5,7 +5,7 @@ namespace Inventory.Core
 {
     public interface ITransferEquipmentView
     {
-        bool Display(List<Equipment> assets, List<User> users, Dictionary<Equipment, User> currentEquipmentUser);
+        bool Display(List<Equipment> assets, List<User> users);
 
         Equipment SelectedTransferEquipment { get; }
         User UserFrom { get; }

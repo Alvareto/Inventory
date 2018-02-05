@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Inventory;
 using Inventory.Core;
 using Inventory.Model;
 using Inventory.SQLiteDAL;

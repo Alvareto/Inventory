@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Inventory.SQLiteDAL;
 using NHibernate;
-using NHibernate.Linq;
 
 namespace Inventory
 {
@@ -11,6 +9,11 @@ namespace Inventory
 
         private CategoryRepository(ISession session) : base(session)
         {
+        }
+
+        public CategoryRepository() : base()
+        {
+
         }
 
         public static CategoryRepository GetInstance(ISession session)

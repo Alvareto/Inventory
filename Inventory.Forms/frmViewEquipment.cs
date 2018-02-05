@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory.Core;
-using Inventory.Model;
 
 namespace Inventory.Forms
 {
@@ -79,6 +73,9 @@ namespace Inventory.Forms
             listInventory.Columns["Equipments"].Visible = false;
 
             listUser.Columns["Equipments"].Visible = false;
+            listUser.Columns["FirstName"].Visible = false;
+            listUser.Columns["LastName"].Visible = false;
+            listUser.Columns["Inventory"].Visible = false;
 
 
             this.Show();

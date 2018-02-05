@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory.Core;
 
@@ -18,7 +13,7 @@ namespace Inventory.Forms
             InitializeComponent();
 
             cmbUsers.ValueMember = "Id";
-            cmbUsers.DisplayMember = "LastName";
+            cmbUsers.DisplayMember = "Name";
             cmbUsers.DataSource = userList;
 
             cmbEquipment.ValueMember = "Id";

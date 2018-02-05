@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory.Controllers;
 
@@ -62,13 +57,13 @@ namespace Inventory.Forms
         // User -> inventory
         private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _controller.ShowUserInventory();
+            _controller.ShowUsers();
         }
 
         // Equipment -> users 
         private void historyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _controller.ShowEquipmentUsers();
+            _controller.ShowInventory();
         }
 
         private void deactivateUserToolStripMenuItem_Click(object sender, EventArgs e)

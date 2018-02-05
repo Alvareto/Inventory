@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Inventory.Forms.frmAddCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABUAACCAAQACADAAgAAAAACAAAAgAAA=</HashCode>
+      <FileName>frmAddCategory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmAddEquipment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAASACABFAAACAASACAgAAAAAAAAAAAAAAAAw=</HashCode>
+      <FileName>frmAddEquipment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmAddUser" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAEAAACACABEACACAAQkCAABAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>frmAddUser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmAssignEquipment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAAChEAAACAAQACAAAAAQAAAIAEAAAEgQA=</HashCode>
+      <FileName>frmAssignEquipment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmDeactivateUser" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAhEIABCAAQACAAAAAAAAAIAAAgAAgAI=</HashCode>
+      <FileName>frmDeactivateUser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmDisposeEquipment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAASAAoBEAACCAAQACAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>frmDisposeEquipment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmMainWindow" Collapsed="true">
+    <Position X="3.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAhAAkBACAAgAQECICAEDACIgBBAAEIiBImBEAAIAA=</HashCode>
+      <FileName>frmMainWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory.Forms.frmTransferEquipment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAgAACAIBpEAAACEQQACAAAAAAAABAAFAAAEiAA=</HashCode>
+      <FileName>frmTransferEquipment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmViewEquipment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAATAASAIBAAAAACEGQICABAAQQAAAIQACEAQAAA=</HashCode>
+      <FileName>frmViewEquipment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.frmViewUsers" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAACAACCABAAAAMCAAQACAAAAQAAAAIAACUAQAAA=</HashCode>
+      <FileName>frmViewUsers.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.Forms.WindowFormsFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAQABAAAAAAAAAAAAAAAQAAAIAAAKAAAAAAQ=</HashCode>
+      <FileName>WindowFormsFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Inventory.CategoryMap" Collapsed="true">
+    <Position X="10" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Category.FluentMapping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory.EquipmentMap" Collapsed="true">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Equipment.FluentMapping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory.UserMap" Collapsed="true">
+    <Position X="10" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\User.FluentMapping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory.CategoryRepository" Collapsed="true">
+    <Position X="7" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAACAAAAAA=</HashCode>
+      <FileName>Repositories\CategoryRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.EquipmentRepository" Collapsed="true">
+    <Position X="1" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEBAAAAAAAAAACAAAAAAAABAACAAAAAgAACAAAAAA=</HashCode>
+      <FileName>Repositories\EquipmentRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.InventoryRepository" Collapsed="true">
+    <Position X="4" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAAAAAAAAAAAAAAAASAABAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\InventoryRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.NHibernateRepository&lt;T&gt;" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAEABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\NHibernateRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.UserRepository" Collapsed="true">
+    <Position X="10" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEBAAAAAEAAAAAAAAAAAAABAAAAAgAAgAACAAAAAA=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.NHibernateUnitOfWork" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAIABACAAAQQAAAIAAgAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>UnitOfWork\NHibernateUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.NHibernateUnitOfWorkFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <FileName>UnitOfWork\NHibernateUnitOfWorkFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory.SQLiteDAL.NHibernateSessionProvider" Collapsed="true">
+    <Position X="4.75" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAACAAQAYgAAAEAAAAAA=</HashCode>
+      <FileName>NHibernateSessionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

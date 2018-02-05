@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Inventory.Core;
-using Inventory.Model;
 
 namespace Inventory.Controllers
 {

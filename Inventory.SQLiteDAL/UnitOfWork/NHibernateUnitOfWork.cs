@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Inventory.SQLiteDAL;
 using NHibernate;
-using NHibernate.Cfg;
 
 namespace Inventory
 {

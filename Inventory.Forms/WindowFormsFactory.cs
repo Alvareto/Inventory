@@ -1,5 +1,4 @@
-﻿using System;
-using Inventory.Core;
+﻿using Inventory.Core;
 
 namespace Inventory.Forms
 {
