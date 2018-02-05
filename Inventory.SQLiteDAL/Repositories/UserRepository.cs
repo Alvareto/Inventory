@@ -24,6 +24,11 @@ namespace Inventory
             return session.CreateQuery(string.Format("from User")).List<User>();
         }
 
+        public ICollection<User> GetAllActive()
+        {
+            return session.Query<User>().Where(u => u.Active).ToList();
+        }
+
         public virtual User GetByKey(int _Id)
         {
             return session.Get<User>(_Id);

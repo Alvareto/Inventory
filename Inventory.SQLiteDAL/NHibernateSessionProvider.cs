@@ -36,7 +36,7 @@ namespace Inventory.SQLiteDAL
                             .ConnectionString(_connectionString) //.UsingFile(_fileName)
                                                                  //.AdoNetBatchSize(100)
                             .IsolationLevel(IsolationLevel.ReadCommitted)
-                            .MaxFetchDepth(2)
+                            .MaxFetchDepth(4)
                         )
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateSessionProvider>())
                         .CurrentSessionContext(typeof(ThreadStaticSessionContext).FullName)
@@ -53,8 +53,8 @@ namespace Inventory.SQLiteDAL
             {
                 if (sessionFactory == null)
                 {
-                    //var schemaExport = new SchemaExport(Configuration);
-                    //schemaExport.Create(false, true);
+                    var schemaExport = new SchemaExport(Configuration);
+                    schemaExport.Create(false, true);
 
                     //sessionFactory = FluentNHibernate.Cfg.Fluently.Configure(Configuration).Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateSessionProvider>()).BuildSessionFactory();
                     sessionFactory = Configuration.

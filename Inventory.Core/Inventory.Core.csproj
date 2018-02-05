@@ -35,10 +35,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\IInventoryController.cs" />
     <Compile Include="Controllers\IMainFormController.cs" />
     <Compile Include="Presentation\Create\IAddNewCategoryView.cs" />
     <Compile Include="Presentation\Create\IAddNewEquipmentView.cs" />
     <Compile Include="Presentation\Create\IAddNewUserView.cs" />
+    <Compile Include="Presentation\Update\IAssignEquipmentView.cs" />
+    <Compile Include="Presentation\Delete\IDeactivateUserView.cs" />
+    <Compile Include="Presentation\Delete\IDisposeEquipmentView.cs" />
+    <Compile Include="Presentation\Update\ITransferEquipmentView.cs" />
     <Compile Include="Presentation\Read\IShowEquipmentListView.cs" />
     <Compile Include="Presentation\Read\IShowUserListView.cs" />
     <Compile Include="Factories\IWindowFormsFactory.cs" />

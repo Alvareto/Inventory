@@ -33,13 +33,12 @@ namespace Inventory.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        public List<Equipment> Index()
+        private List<Equipment> Index()
         {
-            var query = repository.GetAll();
-            return query.ToList();
+            return repository.GetAll().ToList();
         }
 
-        public void Create(Equipment entity)
+        private void Create(Equipment entity)
         {
             using (IUnitOfWork uow = uowFactory.Create())
             {
@@ -71,13 +70,34 @@ namespace Inventory.Controllers
             }
         }
 
-        internal void Create(IAddNewEquipmentView inForm)
+        public void Create(IAddNewEquipmentView inForm, IUserRepository userRepository)
         {
             if (inForm.Display(categoryRepository.GetAll().ToList()))
             {
                 try
                 {
-                    this.Create(EquipmentFactory.CreateEquipment(inForm.EquipmentName, inForm.EquipmentCategory, inForm.DateAcquired));
+                    using (IUnitOfWork uow = uowFactory.Create())
+                    {
+                        userRepository = UserRepository.GetInstance(context);
+                        // make sure that administrator user gets created and "assigned"
+                        var user = userRepository.GetAll()
+                            .FirstOrDefault(u => u.LastName == Constants.ADMINISTRATOR_LASTNAME);
+
+                        if (user == null)
+                        {
+                            user = UserFactory.CreateDefaultUser(Constants.ADMINISTRATOR_LASTNAME);
+
+                            userRepository.Add(user);
+                            //uow.Save();
+                        }
+
+                        var entity = EquipmentFactory.CreateEquipment(inForm.EquipmentName, inForm.EquipmentCategory, inForm.DateAcquired);
+                        var inventory = InventoryFactory.CreateInventory(entity, user, entity.DateAcquired);
+                        entity.Users.Add(inventory);
+
+                        repository.Add(entity);
+                        uow.Save();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -100,6 +120,18 @@ namespace Inventory.Controllers
         {
 
             return ascending ? source.OrderBy(keySelector) : source.OrderByDescending(keySelector);
+        }
+
+        public void Dispose(IDisposeEquipmentView frm)
+        {
+            if (frm.Display(this.Index()))
+            {
+                var entity = frm.SelectedEquipment;
+                entity.Active = false; // dispose
+                entity.DateDisposed = frm.DateDisposed;
+
+                this.Edit(entity);
+            }
         }
     }
 }

@@ -49,5 +49,33 @@ namespace Inventory.Forms
 
             return _frm;
         }
+
+        public IAssignEquipmentView CreateAssignEquipmentView()
+        {
+            var _frm = new frmAssignEquipment();
+
+            return _frm;
+        }
+
+        public ITransferEquipmentView CreateTransferEquipmentView()
+        {
+            var _frm = new frmTransferEquipment();
+
+            return _frm;
+        }
+
+        public IDisposeEquipmentView CreateDisposeEquipmentView()
+        {
+            var _frm = new frmDisposeEquipment();
+
+            return _frm;
+        }
+
+        public IDeactivateUserView CreateDeactivateUserView()
+        {
+            var _frm = new frmDeactivateUser();
+
+            return _frm;
+        }
     }
 }

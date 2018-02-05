@@ -52,7 +52,7 @@ namespace Inventory.Forms
 
         private void disposeEquipmentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            _controller.DisposeEquipment();
         }
 
         private void addCategoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,6 +69,16 @@ namespace Inventory.Forms
         private void historyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _controller.ShowEquipmentUsers();
+        }
+
+        private void deactivateUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _controller.DeactivateUser();
+        }
+
+        private void assignEquipmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _controller.AssignEquipment();
         }
     }
 }

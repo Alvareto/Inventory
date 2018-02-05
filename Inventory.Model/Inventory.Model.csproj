@@ -39,9 +39,11 @@
     <Compile Include="Equipment.cs" />
     <Compile Include="Factories\CategoryFactory.cs" />
     <Compile Include="Factories\EquipmentFactory.cs" />
+    <Compile Include="Factories\InventoryFactory.cs" />
     <Compile Include="Factories\UserFactory.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IInventoryRepository.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\IEquipmentRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />

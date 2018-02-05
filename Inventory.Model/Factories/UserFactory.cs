@@ -19,5 +19,17 @@ namespace Inventory.Model
                 DateFired = null
             };
         }
+
+        public static User CreateDefaultUser(string lName)
+        {
+            return new User()
+            {
+                FirstName = "Administrator",
+                LastName = lName,
+                Active = true,
+                DateHired = DateTime.Today,
+                DateFired = null
+            };
+        }
     }
 }

@@ -6,6 +6,7 @@ using Inventory;
 using Inventory.Core;
 using Inventory.Model;
 using Inventory.SQLiteDAL;
+using NHibernate;
 
 namespace Inventory.Controllers
 {
@@ -13,10 +14,11 @@ namespace Inventory.Controllers
     {
         private IUnitOfWorkFactory uowFactory;
         private IUserRepository repository;
-        
+
+        private ISession context => NHibernateSessionProvider.GetSession();
+
         public UsersController()
         {
-            var context = NHibernateSessionProvider.GetSession();
             this.uowFactory = new NHibernateUnitOfWorkFactory(context);
             this.repository = UserRepository.GetInstance(context);
         }
@@ -29,13 +31,12 @@ namespace Inventory.Controllers
 
         private List<User> Index()
         {
-            var query = repository.GetAll();
-            return query.ToList();
+            return repository.GetAll().ToList();
         }
 
         public void Index(IShowUserListView inForm, IMainFormController mainController)
         {
-            inForm.Display(mainController, repository.GetAll().ToList());
+            inForm.Display(mainController, Index());
         }
 
         private void Create(User entity)
@@ -63,12 +64,12 @@ namespace Inventory.Controllers
             }
         }
 
-        public User Details(int Id)
+        private User Details(int Id)
         {
             return repository.GetByKey(Id);
         }
 
-        public void Edit(User entity)
+        private void Edit(User entity)
         {
             using (IUnitOfWork uow = uowFactory.Create())
             {
@@ -82,7 +83,7 @@ namespace Inventory.Controllers
             }
         }
 
-        public void Delete(int Id)
+        private void Delete(int Id)
         {
             using (IUnitOfWork uow = uowFactory.Create())
             {
@@ -95,6 +96,18 @@ namespace Inventory.Controllers
         {
 
             return ascending ? source.OrderBy(keySelector) : source.OrderByDescending(keySelector);
+        }
+
+        public void Deactivate(IDeactivateUserView inForm)
+        {
+            if (inForm.Display(this.Index()))
+            {
+                var entity = inForm.SelectedUser;
+                entity.Active = false;
+                entity.DateFired = inForm.DateFired;
+
+                this.Edit(entity);
+            }
         }
     }
 }

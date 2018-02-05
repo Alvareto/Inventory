@@ -39,8 +39,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmAddCategory.cs">
@@ -61,11 +63,35 @@
     <Compile Include="frmAddUser.Designer.cs">
       <DependentUpon>frmAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAssignEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAssignEquipment.Designer.cs">
+      <DependentUpon>frmAssignEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeactivateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeactivateUser.Designer.cs">
+      <DependentUpon>frmDeactivateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDisposeEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDisposeEquipment.Designer.cs">
+      <DependentUpon>frmDisposeEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMainWindow.Designer.cs">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTransferEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTransferEquipment.Designer.cs">
+      <DependentUpon>frmTransferEquipment.cs</DependentUpon>
     </Compile>
     <Compile Include="frmViewEquipment.cs">
       <SubType>Form</SubType>
@@ -90,8 +116,20 @@
     <EmbeddedResource Include="frmAddUser.resx">
       <DependentUpon>frmAddUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAssignEquipment.resx">
+      <DependentUpon>frmAssignEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeactivateUser.resx">
+      <DependentUpon>frmDeactivateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDisposeEquipment.resx">
+      <DependentUpon>frmDisposeEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMainWindow.resx">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTransferEquipment.resx">
+      <DependentUpon>frmTransferEquipment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmViewEquipment.resx">
       <DependentUpon>frmViewEquipment.cs</DependentUpon>

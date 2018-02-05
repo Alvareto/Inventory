@@ -10,13 +10,18 @@ namespace Inventory.Model
     {
         public static Equipment CreateEquipment(string name, Category category, DateTime dateAcquired)
         {
-            return new Equipment()
+            var equipment = new Equipment()
             {
                 Name = name,
                 Active = true,
                 Category = category,
-                DateAcquired = dateAcquired
+                DateAcquired = dateAcquired,
+                DateDisposed = null
             };
+
+            //equipment.Users.Add(InventoryFactory.CreateInventory(equipment, UserFactory.CreateDefaultUser(), dateAcquired));
+
+            return equipment;
         }
     }
 }

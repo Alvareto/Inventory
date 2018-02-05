@@ -62,7 +62,7 @@ namespace Inventory
                 .AsBag()
                 .Cascade.SaveUpdate()
                 .LazyLoad()
-                .Inverse()
+                //.Inverse()
                 .Generic()
                 .Component(c => {
                         c.Map(x => x.DateFrom)    

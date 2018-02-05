@@ -30,22 +30,25 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.addEquipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equipmentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.transferEquipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disposeEquipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equipmentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userEquipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.equipmentToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignEquipmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deactivateUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,10 +69,26 @@
             // 
             this.usersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewUsersToolStripMenuItem,
-            this.addUserToolStripMenuItem});
+            this.toolStripSeparator2,
+            this.addUserToolStripMenuItem,
+            this.deactivateUserToolStripMenuItem});
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
             this.usersToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.usersToolStripMenuItem.Text = "Users";
+            // 
+            // viewUsersToolStripMenuItem
+            // 
+            this.viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
+            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.viewUsersToolStripMenuItem.Text = "View users";
+            this.viewUsersToolStripMenuItem.Click += new System.EventHandler(this.viewUsersToolStripMenuItem_Click);
+            // 
+            // addUserToolStripMenuItem
+            // 
+            this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.addUserToolStripMenuItem.Text = "Add user";
+            this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
             // 
             // equipmentToolStripMenuItem
             // 
@@ -77,25 +96,12 @@
             this.viewInventoryToolStripMenuItem,
             this.toolStripSeparator1,
             this.addEquipmentToolStripMenuItem,
+            this.assignEquipmentToolStripMenuItem,
             this.transferEquipmentToolStripMenuItem,
             this.disposeEquipmentToolStripMenuItem});
             this.equipmentToolStripMenuItem.Name = "equipmentToolStripMenuItem";
             this.equipmentToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.equipmentToolStripMenuItem.Text = "Inventory";
-            // 
-            // viewUsersToolStripMenuItem
-            // 
-            this.viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
-            this.viewUsersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.viewUsersToolStripMenuItem.Text = "View users";
-            this.viewUsersToolStripMenuItem.Click += new System.EventHandler(this.viewUsersToolStripMenuItem_Click);
-            // 
-            // addUserToolStripMenuItem
-            // 
-            this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addUserToolStripMenuItem.Text = "Add user";
-            this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
             // 
             // viewInventoryToolStripMenuItem
             // 
@@ -116,14 +122,6 @@
             this.addEquipmentToolStripMenuItem.Text = "Add equipment";
             this.addEquipmentToolStripMenuItem.Click += new System.EventHandler(this.addEquipmentToolStripMenuItem_Click);
             // 
-            // equipmentToolStripMenuItem1
-            // 
-            this.equipmentToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.categoriesToolStripMenuItem});
-            this.equipmentToolStripMenuItem1.Name = "equipmentToolStripMenuItem1";
-            this.equipmentToolStripMenuItem1.Size = new System.Drawing.Size(77, 20);
-            this.equipmentToolStripMenuItem1.Text = "Equipment";
-            // 
             // transferEquipmentToolStripMenuItem
             // 
             this.transferEquipmentToolStripMenuItem.Name = "transferEquipmentToolStripMenuItem";
@@ -138,6 +136,14 @@
             this.disposeEquipmentToolStripMenuItem.Text = "Dispose equipment";
             this.disposeEquipmentToolStripMenuItem.Click += new System.EventHandler(this.disposeEquipmentToolStripMenuItem_Click);
             // 
+            // equipmentToolStripMenuItem1
+            // 
+            this.equipmentToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.categoriesToolStripMenuItem});
+            this.equipmentToolStripMenuItem1.Name = "equipmentToolStripMenuItem1";
+            this.equipmentToolStripMenuItem1.Size = new System.Drawing.Size(77, 20);
+            this.equipmentToolStripMenuItem1.Text = "Equipment";
+            // 
             // categoriesToolStripMenuItem
             // 
             this.categoriesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -149,7 +155,7 @@
             // addCategoryToolStripMenuItem
             // 
             this.addCategoryToolStripMenuItem.Name = "addCategoryToolStripMenuItem";
-            this.addCategoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addCategoryToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.addCategoryToolStripMenuItem.Text = "Add category";
             this.addCategoryToolStripMenuItem.Click += new System.EventHandler(this.addCategoryToolStripMenuItem_Click);
             // 
@@ -170,6 +176,13 @@
             this.userEquipmentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.userEquipmentToolStripMenuItem.Text = "User";
             // 
+            // inventoryToolStripMenuItem
+            // 
+            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inventoryToolStripMenuItem.Text = "Inventory";
+            this.inventoryToolStripMenuItem.Click += new System.EventHandler(this.inventoryToolStripMenuItem_Click);
+            // 
             // equipmentToolStripMenuItem2
             // 
             this.equipmentToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -185,12 +198,24 @@
             this.historyToolStripMenuItem.Text = "History";
             this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
             // 
-            // inventoryToolStripMenuItem
+            // assignEquipmentToolStripMenuItem
             // 
-            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.inventoryToolStripMenuItem.Text = "Inventory";
-            this.inventoryToolStripMenuItem.Click += new System.EventHandler(this.inventoryToolStripMenuItem_Click);
+            this.assignEquipmentToolStripMenuItem.Name = "assignEquipmentToolStripMenuItem";
+            this.assignEquipmentToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.assignEquipmentToolStripMenuItem.Text = "Assign equipment";
+            this.assignEquipmentToolStripMenuItem.Click += new System.EventHandler(this.assignEquipmentToolStripMenuItem_Click);
+            // 
+            // deactivateUserToolStripMenuItem
+            // 
+            this.deactivateUserToolStripMenuItem.Name = "deactivateUserToolStripMenuItem";
+            this.deactivateUserToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.deactivateUserToolStripMenuItem.Text = "Deactivate user";
+            this.deactivateUserToolStripMenuItem.Click += new System.EventHandler(this.deactivateUserToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
             // 
             // frmMainWindow
             // 
@@ -229,5 +254,8 @@
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem equipmentToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deactivateUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignEquipmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

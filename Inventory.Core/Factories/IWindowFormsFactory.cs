@@ -8,5 +8,11 @@
 
         IShowUserListView CreateShowUsersListView();
         IShowEquipmentListView CreateShowEquipmentListView();
+
+        IAssignEquipmentView CreateAssignEquipmentView();
+        ITransferEquipmentView CreateTransferEquipmentView();
+
+        IDisposeEquipmentView CreateDisposeEquipmentView();
+        IDeactivateUserView CreateDeactivateUserView();
     }
 }

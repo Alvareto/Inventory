@@ -61,12 +61,43 @@ namespace Inventory.Controllers
 
             var _frm = _formsFactory.CreateAddNewEquipmentView();
 
-            _ctrl.Create(_frm);
+            _ctrl.Create(_frm, _userRepository);
+        }
+
+        public void AssignEquipment()
+        {
+            var _ctrl = new InventoryController();
+
+            var _frm = _formsFactory.CreateAssignEquipmentView();
+
+            _ctrl.Assign(_frm);
         }
 
         public void TransferEquipment()
         {
-            throw new NotImplementedException();
+            var _ctrl = new InventoryController();
+
+            var _frm = _formsFactory.CreateTransferEquipmentView();
+
+            _ctrl.Transfer(_frm);
+        }
+
+        public void DeactivateUser()
+        {
+            var _ctrl = new UsersController();
+
+            var _frm = _formsFactory.CreateDeactivateUserView();
+
+            _ctrl.Deactivate(_frm);
+        }
+
+        public void DisposeEquipment()
+        {
+            var _ctrl = new EquipmentsController();
+
+            var _frm = _formsFactory.CreateDisposeEquipmentView();
+
+            _ctrl.Dispose(_frm);
         }
 
         public void AddCategory()

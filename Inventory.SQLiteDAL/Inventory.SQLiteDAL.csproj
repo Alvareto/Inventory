@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\EquipmentRepository.cs" />
+    <Compile Include="Repositories\InventoryRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Mappings\Category.FluentMapping.cs" />
     <Compile Include="Mappings\Equipment.FluentMapping.cs" />
@@ -71,6 +72,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inventory.Core\Inventory.Core.csproj">
+      <Project>{9d5d791a-cecc-4107-a6d1-ea748cfc7001}</Project>
+      <Name>Inventory.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.Model\Inventory.Model.csproj">
       <Project>{94CFC396-E408-48AE-9FD8-E1B26B0FB791}</Project>
       <Name>Inventory.Model</Name>

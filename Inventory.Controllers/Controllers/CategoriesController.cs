@@ -5,6 +5,7 @@ using Inventory;
 using Inventory.Core;
 using Inventory.Model;
 using Inventory.SQLiteDAL;
+using NHibernate;
 
 namespace Inventory.Controllers
 {
@@ -13,9 +14,10 @@ namespace Inventory.Controllers
         private IUnitOfWorkFactory uowFactory;
         private ICategoryRepository repository;
 
+        private ISession context => NHibernateSessionProvider.GetSession();
+
         public CategoriesController()
         {
-            var context = NHibernateSessionProvider.GetSession();
             this.uowFactory = new NHibernateUnitOfWorkFactory(context);
             this.repository = CategoryRepository.GetInstance(context);
         }
