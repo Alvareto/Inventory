@@ -35,7 +35,7 @@ namespace Inventory.Controllers
 
         public void Assign(IAssignEquipmentView inForm)
         {
-            if (inForm.Display(_equipmentRepository.GetAllUnassigned().ToList(), _userRepository.GetAllActive().ToList()))
+            if (inForm.Display(_equipmentRepository.GetAll().ToList(), _userRepository.GetAllActive().ToList()))
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Inventory.Controllers
 
         public void Transfer(ITransferEquipmentView inForm)
         {
-            if (inForm.Display(_equipmentRepository.GetAllAssigned().ToList()
+            if (inForm.Display(_equipmentRepository.GetAll().ToList()
                 , _userRepository.GetAllActive().ToList()
                 , null))// _equipmentRepository.MapInventory()))
             {
@@ -83,7 +83,7 @@ namespace Inventory.Controllers
 
                         var equipment = inForm.SelectedTransferEquipment;
 
-                        var oldInventory = _inventoryRepository.GetLatest(equipment);
+                        var oldInventory = equipment.CurrentInventory;
                         oldInventory.DateTo = inForm.Date_ExTo_NewFrom;
 
                         var inventory = InventoryFactory.CreateInventory(equipment, user, inForm.Date_ExTo_NewFrom);

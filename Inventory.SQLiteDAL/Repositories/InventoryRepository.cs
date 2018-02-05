@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace Inventory
 {
@@ -38,7 +39,15 @@ namespace Inventory
 
         public virtual ICollection<Inventory> GetAll()
         {
-            return session.CreateQuery(string.Format("from Inventory")).List<Inventory>();
+            var eq = session.Query<Equipment>().FetchMany(e => e.Users).ThenFetch(i => i.Users).ToList();
+
+            var inv = new List<Inventory>();
+            foreach (var equipment in eq)
+            {
+                inv.AddRange(equipment.Users);
+            }
+
+            return inv;
         }
 
         public virtual void Add(Equipment e, User u)

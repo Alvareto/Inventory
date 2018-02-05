@@ -10,5 +10,9 @@ namespace Inventory.Core
         void AddUser();
         void AddEquipment();
         void AddCategory();
+        void AssignEquipment();
+        void TransferEquipment();
+        void DisposeEquipment();
+        void DeactivateUser();
     }
 }

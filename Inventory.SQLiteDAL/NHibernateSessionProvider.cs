@@ -53,8 +53,8 @@ namespace Inventory.SQLiteDAL
             {
                 if (sessionFactory == null)
                 {
-                    var schemaExport = new SchemaExport(Configuration);
-                    schemaExport.Create(false, true);
+                    //var schemaExport = new SchemaExport(Configuration);
+                    //schemaExport.Create(false, true);
 
                     //sessionFactory = FluentNHibernate.Cfg.Fluently.Configure(Configuration).Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateSessionProvider>()).BuildSessionFactory();
                     sessionFactory = Configuration.

@@ -6,15 +6,6 @@ namespace Inventory.Forms
     public class WindowFormsFactory : IWindowFormsFactory
     {
 
-        //var newFrm = new frmAddUser(inAccType);
-
-        //return newFrm;
-
-        //var newFrm = new frmViewAccounts();
-
-        //return newFrm;
-
-
         public IAddNewCategoryView CreateAddNewCategoryView()
         {
             var _frm = new frmAddCategory();

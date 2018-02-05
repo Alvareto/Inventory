@@ -22,17 +22,18 @@ namespace Inventory
 
         public virtual ICollection<Equipment> GetAll()
         {
-            return session.CreateQuery(string.Format("from Equipment")).List<Equipment>();
+            return session.Query<Equipment>().FetchMany(e => e.Users).ThenFetch(e => e.Users).ToList<Equipment>();
         }
 
         public ICollection<Equipment> GetAllUnassigned()
         {
+
             var eq = session.Query<Equipment>()
                 .FetchMany(e => e.Users)
                 .Where(e => e.Active).ToList();
             var inv = eq.SelectMany(e => e.Users).Where(e => e.DateTo != null || e.Users.LastName.Equals(Constants.ADMINISTRATOR_LASTNAME)).ToList();
 
-            return inv.Select(r => r.Equipments).Distinct().ToList();
+            return inv.Select(r => r.Equipments).ToList();
         }
 
         public ICollection<Equipment> GetAllAssigned()

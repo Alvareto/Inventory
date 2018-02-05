@@ -17,7 +17,8 @@ using System.Collections.Generic;
 
 namespace Inventory
 {
-    public partial class Equipment : INotifyPropertyChanging, INotifyPropertyChanged {
+    public partial class Equipment : INotifyPropertyChanging, INotifyPropertyChanged
+    {
 
         private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(System.String.Empty);
 
@@ -34,29 +35,29 @@ namespace Inventory
         private IList<Inventory> _Users;
 
         private Category _Category;
-    
+
         #region Extensibility Method Definitions
-        
+
         partial void OnCreated();
         partial void OnIdChanging(int value);
-        
+
         partial void OnIdChanged();
         partial void OnActiveChanging(bool value);
-        
+
         partial void OnActiveChanged();
         partial void OnDateAcquiredChanging(System.DateTime value);
-        
+
         partial void OnDateAcquiredChanged();
         partial void OnDateDisposedChanging(System.Nullable<System.DateTime> value);
-        
+
         partial void OnDateDisposedChanged();
         partial void OnNameChanging(string value);
-        
+
         partial void OnNameChanged();
         partial void OnCategoryChanging(Category value);
 
         partial void OnCategoryChanged();
-        
+
         #endregion
         public Equipment()
         {
@@ -83,24 +84,29 @@ namespace Inventory
             }
         }
 
-        public virtual bool Active
+        public virtual string Name
         {
             get
             {
-                return this._Active;
+                return this._Name;
             }
             set
             {
-                if (this._Active != value)
+                if (this._Name != value)
                 {
-                    this.OnActiveChanging(value);
-                    this.SendPropertyChanging("Active");
-                    this._Active = value;
-                    this.SendPropertyChanged("Active");
-                    this.OnActiveChanged();
+                    this.OnNameChanging(value);
+                    this.SendPropertyChanging("Name");
+                    this._Name = value;
+                    this.SendPropertyChanged("Name");
+                    this.OnNameChanged();
                 }
             }
         }
+
+        public virtual string CategoryName => Category.Name;
+
+        public virtual Inventory CurrentInventory => Users.OrderByDescending(e => e.DateFrom).FirstOrDefault();
+        public virtual User CurrentInventoryUser => CurrentInventory.Users;
 
         public virtual System.DateTime DateAcquired
         {
@@ -140,21 +146,21 @@ namespace Inventory
             }
         }
 
-        public virtual string Name
+        public virtual bool Active
         {
             get
             {
-                return this._Name;
+                return this._Active;
             }
             set
             {
-                if (this._Name != value)
+                if (this._Active != value)
                 {
-                    this.OnNameChanging(value);
-                    this.SendPropertyChanging("Name");
-                    this._Name = value;
-                    this.SendPropertyChanged("Name");
-                    this.OnNameChanged();
+                    this.OnActiveChanging(value);
+                    this.SendPropertyChanging("Active");
+                    this._Active = value;
+                    this.SendPropertyChanged("Active");
+                    this.OnActiveChanged();
                 }
             }
         }
@@ -189,28 +195,28 @@ namespace Inventory
                 }
             }
         }
-   
+
         public virtual event PropertyChangingEventHandler PropertyChanging;
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void SendPropertyChanging()
         {
-		        var handler = this.PropertyChanging;
+            var handler = this.PropertyChanging;
             if (handler != null)
                 handler(this, emptyChangingEventArgs);
         }
 
-        protected virtual void SendPropertyChanging(System.String propertyName) 
-        {    
-		        var handler = this.PropertyChanging;
+        protected virtual void SendPropertyChanging(System.String propertyName)
+        {
+            var handler = this.PropertyChanging;
             if (handler != null)
                 handler(this, new PropertyChangingEventArgs(propertyName));
         }
 
         protected virtual void SendPropertyChanged(System.String propertyName)
-        {    
-		        var handler = this.PropertyChanged;
+        {
+            var handler = this.PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
