@@ -20,17 +20,16 @@ namespace Inventory.Tests
             get
             {
                 if (_configuration == null)
-                {
                     _configuration = new Configuration()
-                        .AddProperties(new Dictionary<string, string> {
-                            { Environment.ConnectionDriver, typeof( SQLite20Driver ).FullName },
-                            { Environment.Dialect, typeof( SQLiteDialect ).FullName },
-                            { Environment.ConnectionProvider, typeof( DriverConnectionProvider ).FullName },
-                            { Environment.ConnectionString, CONN_STR },
-                            { Environment.ShowSql, true.ToString() },
-                            { Environment.CurrentSessionContextClass, "thread_static"}
+                        .AddProperties(new Dictionary<string, string>
+                        {
+                            {Environment.ConnectionDriver, typeof(SQLite20Driver).FullName},
+                            {Environment.Dialect, typeof(SQLiteDialect).FullName},
+                            {Environment.ConnectionProvider, typeof(DriverConnectionProvider).FullName},
+                            {Environment.ConnectionString, CONN_STR},
+                            {Environment.ShowSql, true.ToString()},
+                            {Environment.CurrentSessionContextClass, "thread_static"}
                         });
-                }
 
                 return _configuration;
             }

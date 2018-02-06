@@ -5,9 +5,8 @@ namespace Inventory.Core
 {
     public interface IDisposeEquipmentView
     {
-        bool Display(List<Equipment> assets);
-
         Equipment SelectedEquipment { get; }
         DateTime DateDisposed { get; }
+        bool Display(List<Equipment> assets);
     }
 }

@@ -4,21 +4,19 @@ using NHibernate;
 
 namespace Inventory
 {
-    public partial class NHibernateUnitOfWorkFactory : IUnitOfWorkFactory
+    public class NHibernateUnitOfWorkFactory : IUnitOfWorkFactory
     {
-        protected ISession _session = null;
+        protected ISession _session;
 
         public NHibernateUnitOfWorkFactory()
             : this(NHibernateSessionProvider.SessionFactory.OpenSession())
         {
         }
-        
+
         public NHibernateUnitOfWorkFactory(ISession session)
         {
             if (session == null)
-            {
                 throw new ArgumentNullException("session");
-            }
             _session = session;
         }
 
@@ -30,6 +28,7 @@ namespace Inventory
                 throw new InvalidOperationException("Session has not been initialized.");
             return new NHibernateUnitOfWork(_session);
         }
+
         #endregion
     }
 }

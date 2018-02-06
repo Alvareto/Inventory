@@ -1,114 +1,102 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Inventory
 {
     public partial class Inventory : INotifyPropertyChanging, INotifyPropertyChanged
     {
+        private static readonly PropertyChangingEventArgs emptyChangingEventArgs =
+            new PropertyChangingEventArgs(string.Empty);
 
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(System.String.Empty);
+        private DateTime _DateFrom;
 
-        private System.DateTime _DateFrom;
+        private DateTime? _DateTo;
 
-        private System.Nullable<System.DateTime> _DateTo;
-
-        #region Extensibility Method Definitions
-
-        partial void OnCreated();
-        partial void OnDateFromChanging(System.DateTime value);
-
-        partial void OnDateFromChanged();
-        partial void OnDateToChanging(System.Nullable<System.DateTime> value);
-
-        partial void OnDateToChanged();
-
-        #endregion
         public Inventory()
         {
             OnCreated();
         }
 
-        public virtual System.DateTime DateFrom
+        public virtual DateTime DateFrom
         {
-            get
-            {
-                return this._DateFrom;
-            }
+            get => _DateFrom;
             set
             {
-                if (this._DateFrom != value)
+                if (_DateFrom != value)
                 {
-                    this.OnDateFromChanging(value);
-                    this.SendPropertyChanging("DateFrom");
-                    this._DateFrom = value;
-                    this.SendPropertyChanged("DateFrom");
-                    this.OnDateFromChanged();
+                    OnDateFromChanging(value);
+                    SendPropertyChanging("DateFrom");
+                    _DateFrom = value;
+                    SendPropertyChanged("DateFrom");
+                    OnDateFromChanged();
                 }
             }
         }
 
-        public virtual System.Nullable<System.DateTime> DateTo
+        public virtual DateTime? DateTo
         {
-            get
-            {
-                return this._DateTo;
-            }
+            get => _DateTo;
             set
             {
-                if (this._DateTo != value)
+                if (_DateTo != value)
                 {
-                    this.OnDateToChanging(value);
-                    this.SendPropertyChanging("DateTo");
-                    this._DateTo = value;
-                    this.SendPropertyChanged("DateTo");
-                    this.OnDateToChanged();
+                    OnDateToChanging(value);
+                    SendPropertyChanging("DateTo");
+                    _DateTo = value;
+                    SendPropertyChanged("DateTo");
+                    OnDateToChanged();
                 }
             }
         }
 
         public virtual string UserName => Users?.Name;
+
         //public virtual string EquipmentName => $"[{Equipments?.CategoryName}] {Equipments?.Name}";
         public virtual bool Assigned => !_DateTo.HasValue;
 
-        #region Ends of the many-to-many association 'Equipment_User'
-
-        public Equipment Equipments
-        {
-            get;
-            set;
-        }
-
-        public User Users
-        {
-            get;
-            set;
-        }
-
-        #endregion
+        public virtual event PropertyChangedEventHandler PropertyChanged;
 
         public virtual event PropertyChangingEventHandler PropertyChanging;
 
-        public virtual event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void SendPropertyChanging()
         {
-            var handler = this.PropertyChanging;
+            var handler = PropertyChanging;
             if (handler != null)
                 handler(this, emptyChangingEventArgs);
         }
 
-        protected virtual void SendPropertyChanging(System.String propertyName)
+        protected virtual void SendPropertyChanging(string propertyName)
         {
-            var handler = this.PropertyChanging;
+            var handler = PropertyChanging;
             if (handler != null)
                 handler(this, new PropertyChangingEventArgs(propertyName));
         }
 
-        protected virtual void SendPropertyChanged(System.String propertyName)
+        protected virtual void SendPropertyChanged(string propertyName)
         {
-            var handler = this.PropertyChanged;
+            var handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
 
+        #region Extensibility Method Definitions
+
+        partial void OnCreated();
+        partial void OnDateFromChanging(DateTime value);
+
+        partial void OnDateFromChanged();
+        partial void OnDateToChanging(DateTime? value);
+
+        partial void OnDateToChanged();
+
+        #endregion
+
+        #region Ends of the many-to-many association 'Equipment_User'
+
+        public Equipment Equipments { get; set; }
+
+        public User Users { get; set; }
+
+        #endregion
+    }
 }

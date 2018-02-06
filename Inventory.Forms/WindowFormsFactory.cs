@@ -4,7 +4,6 @@ namespace Inventory.Forms
 {
     public class WindowFormsFactory : IWindowFormsFactory
     {
-
         public IAddNewCategoryView CreateAddNewCategoryView()
         {
             var _frm = new frmAddCategory();

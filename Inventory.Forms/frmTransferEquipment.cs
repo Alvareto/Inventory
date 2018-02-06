@@ -8,6 +8,9 @@ namespace Inventory.Forms
 {
     public partial class frmTransferEquipment : Form, ITransferEquipmentView
     {
+        private readonly BindingList<Equipment> equipmentList = new BindingList<Equipment>();
+        private readonly BindingList<User> userList = new BindingList<User>();
+
         public frmTransferEquipment()
         {
             InitializeComponent();
@@ -21,21 +24,12 @@ namespace Inventory.Forms
             cmbEquipment.DataSource = equipmentList;
         }
 
-        private void frmTransferEquipment_Load(object sender, EventArgs e)
-        {
-            cmbEquipment.SelectedIndex = -1;
-            cmbUsers.SelectedIndex = -1;
-        }
-
-        private readonly BindingList<Equipment> equipmentList = new BindingList<Equipment>();
-        private readonly BindingList<User> userList = new BindingList<User>();
-
         public bool Display(List<Equipment> assets, List<User> users)
         {
             users.ForEach(c => userList.Add(c));
             assets.ForEach(c => equipmentList.Add(c));
 
-            return this.ShowDialog() == DialogResult.OK;
+            return ShowDialog() == DialogResult.OK;
         }
 
         public Equipment SelectedTransferEquipment => cmbEquipment.SelectedItem as Equipment;
@@ -43,10 +37,16 @@ namespace Inventory.Forms
         public User SelectedUserTo => cmbUsers.SelectedItem as User;
         public DateTime Date_ExTo_NewFrom => dateTransfer.Value;
 
+        private void frmTransferEquipment_Load(object sender, EventArgs e)
+        {
+            cmbEquipment.SelectedIndex = -1;
+            cmbUsers.SelectedIndex = -1;
+        }
+
         private void cmbEquipment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.txtFromUser.ResetText();
-            this.txtFromUser.Text = UserFrom?.Name;
+            txtFromUser.ResetText();
+            txtFromUser.Text = UserFrom?.Name;
         }
     }
 }

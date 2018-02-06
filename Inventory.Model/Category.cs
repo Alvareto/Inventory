@@ -1,148 +1,128 @@
-﻿using System.ComponentModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Inventory
 {
-    public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged {
+    public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
+    {
+        private static readonly PropertyChangingEventArgs emptyChangingEventArgs =
+            new PropertyChangingEventArgs(string.Empty);
 
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(System.String.Empty);
+        private IList<Category> _ChildCategories;
+
+        private IList<Equipment> _Equipments;
 
         private int _Id;
 
         private string _Name;
 
-        private IList<Equipment> _Equipments;
-
-        private IList<Category> _ChildCategories;
-
         private Category _ParentCategory;
-    
-        #region Extensibility Method Definitions
-        
-        partial void OnCreated();
-        partial void OnIdChanging(int value);
-        
-        partial void OnIdChanged();
-        partial void OnNameChanging(string value);
-        
-        partial void OnNameChanged();
-        partial void OnParentCategoryChanging(Category value);
 
-        partial void OnParentCategoryChanged();
-        
-        #endregion
         public Category()
         {
-            this._Equipments = new List<Equipment>();
-            this._ChildCategories = new List<Category>();
+            _Equipments = new List<Equipment>();
+            _ChildCategories = new List<Category>();
             OnCreated();
         }
 
         public virtual int Id
         {
-            get
-            {
-                return this._Id;
-            }
+            get => _Id;
             set
             {
-                if (this._Id != value)
+                if (_Id != value)
                 {
-                    this.OnIdChanging(value);
-                    this.SendPropertyChanging("Id");
-                    this._Id = value;
-                    this.SendPropertyChanged("Id");
-                    this.OnIdChanged();
+                    OnIdChanging(value);
+                    SendPropertyChanging("Id");
+                    _Id = value;
+                    SendPropertyChanged("Id");
+                    OnIdChanged();
                 }
             }
         }
 
         public virtual string Name
         {
-            get
-            {
-                return this._Name;
-            }
+            get => _Name;
             set
             {
-                if (this._Name != value)
+                if (_Name != value)
                 {
-                    this.OnNameChanging(value);
-                    this.SendPropertyChanging("Name");
-                    this._Name = value;
-                    this.SendPropertyChanged("Name");
-                    this.OnNameChanged();
+                    OnNameChanging(value);
+                    SendPropertyChanging("Name");
+                    _Name = value;
+                    SendPropertyChanged("Name");
+                    OnNameChanged();
                 }
             }
         }
 
         public virtual IList<Equipment> Equipments
         {
-            get
-            {
-                return this._Equipments;
-            }
-            set
-            {
-                this._Equipments = value;
-            }
+            get => _Equipments;
+            set => _Equipments = value;
         }
 
         public virtual IList<Category> ChildCategories
         {
-            get
-            {
-                return this._ChildCategories;
-            }
-            set
-            {
-                this._ChildCategories = value;
-            }
+            get => _ChildCategories;
+            set => _ChildCategories = value;
         }
 
         public virtual Category ParentCategory
         {
-            get
-            {
-                return this._ParentCategory;
-            }
+            get => _ParentCategory;
             set
             {
-                if (this._ParentCategory != value)
+                if (_ParentCategory != value)
                 {
-                    this.OnParentCategoryChanging(value);
-                    this.SendPropertyChanging("ParentCategory");
-                    this._ParentCategory = value;
-                    this.SendPropertyChanged("ParentCategory");
-                    this.OnParentCategoryChanged();
+                    OnParentCategoryChanging(value);
+                    SendPropertyChanging("ParentCategory");
+                    _ParentCategory = value;
+                    SendPropertyChanged("ParentCategory");
+                    OnParentCategoryChanged();
                 }
             }
         }
-   
-        public virtual event PropertyChangingEventHandler PropertyChanging;
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
+        public virtual event PropertyChangingEventHandler PropertyChanging;
+
         protected virtual void SendPropertyChanging()
         {
-		        var handler = this.PropertyChanging;
+            var handler = PropertyChanging;
             if (handler != null)
                 handler(this, emptyChangingEventArgs);
         }
 
-        protected virtual void SendPropertyChanging(System.String propertyName) 
-        {    
-		        var handler = this.PropertyChanging;
+        protected virtual void SendPropertyChanging(string propertyName)
+        {
+            var handler = PropertyChanging;
             if (handler != null)
                 handler(this, new PropertyChangingEventArgs(propertyName));
         }
 
-        protected virtual void SendPropertyChanged(System.String propertyName)
-        {    
-		        var handler = this.PropertyChanged;
+        protected virtual void SendPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
 
+        #region Extensibility Method Definitions
+
+        partial void OnCreated();
+        partial void OnIdChanging(int value);
+
+        partial void OnIdChanged();
+        partial void OnNameChanging(string value);
+
+        partial void OnNameChanged();
+        partial void OnParentCategoryChanging(Category value);
+
+        partial void OnParentCategoryChanged();
+
+        #endregion
+    }
 }

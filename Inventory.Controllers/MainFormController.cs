@@ -5,24 +5,24 @@ namespace Inventory.Controllers
 {
     public class MainFormController : IMainFormController
     {
-        private readonly IWindowFormsFactory _formsFactory = null;
-        private readonly IUnitOfWorkFactory _uowFactory = null;
-        private readonly IUserRepository _userRepository = null;
-        private readonly IEquipmentRepository _equipmentRepository = null;
-        private readonly ICategoryRepository _categoryRepository = null;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IEquipmentRepository _equipmentRepository;
+        private readonly IWindowFormsFactory _formsFactory;
+        private readonly IUnitOfWorkFactory _uowFactory;
+        private readonly IUserRepository _userRepository;
 
         public MainFormController()
         {
-
         }
 
-        public MainFormController(IWindowFormsFactory inFormFactory, IUnitOfWorkFactory uowFactory, IUserRepository inUserRepo, IEquipmentRepository inEquipmentRepo, ICategoryRepository inCategoryRepo)
+        public MainFormController(IWindowFormsFactory inFormFactory, IUnitOfWorkFactory uowFactory,
+            IUserRepository inUserRepo, IEquipmentRepository inEquipmentRepo, ICategoryRepository inCategoryRepo)
         {
-            this._formsFactory = inFormFactory;
-            this._uowFactory = uowFactory;
-            this._userRepository = inUserRepo;
-            this._equipmentRepository = inEquipmentRepo;
-            this._categoryRepository = inCategoryRepo;
+            _formsFactory = inFormFactory;
+            _uowFactory = uowFactory;
+            _userRepository = inUserRepo;
+            _equipmentRepository = inEquipmentRepo;
+            _categoryRepository = inCategoryRepo;
         }
 
         public void AddUser()
@@ -32,24 +32,6 @@ namespace Inventory.Controllers
             var _frm = _formsFactory.CreateAddNewUserView();
 
             _ctrl.Create(_frm);
-        }
-
-        public void ShowUsers()
-        {
-            var _ctrl = new UsersController();
-
-            var _frm = _formsFactory.CreateShowUsersListView();
-
-            _ctrl.Index(_frm, this);
-        }
-
-        public void ShowInventory()
-        {
-            var _ctrl = new EquipmentsController(); // _uowFactory, _equipmentRepository
-
-            var _frm = _formsFactory.CreateShowEquipmentListView();
-
-            _ctrl.Index(_frm, this);
         }
 
         public void AddEquipment()
@@ -104,6 +86,24 @@ namespace Inventory.Controllers
             var _frm = _formsFactory.CreateAddNewCategoryView();
 
             _ctrl.Create(_frm);
+        }
+
+        public void ShowUsers()
+        {
+            var _ctrl = new UsersController();
+
+            var _frm = _formsFactory.CreateShowUsersListView();
+
+            _ctrl.Index(_frm, this);
+        }
+
+        public void ShowInventory()
+        {
+            var _ctrl = new EquipmentsController(); // _uowFactory, _equipmentRepository
+
+            var _frm = _formsFactory.CreateShowEquipmentListView();
+
+            _ctrl.Index(_frm, this);
         }
 
         public void ShowUserInventory()

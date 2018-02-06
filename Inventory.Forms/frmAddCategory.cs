@@ -8,6 +8,8 @@ namespace Inventory.Forms
 {
     public partial class frmAddCategory : Form, IAddNewCategoryView
     {
+        private readonly BindingList<Category> parentList = new BindingList<Category>();
+
         public frmAddCategory()
         {
             InitializeComponent();
@@ -17,22 +19,19 @@ namespace Inventory.Forms
             cmbCategoryParent.DataSource = parentList;
         }
 
-        private void frmAddCategory_Load(object sender, EventArgs e)
-        {
-            cmbCategoryParent.SelectedIndex = -1;
-        }
-
-        private readonly BindingList<Category> parentList = new BindingList<Category>();
-
         public bool Display(List<Category> categories)
         {
             categories.ForEach(c => parentList.Add(c));
 
-            return this.ShowDialog() == DialogResult.OK;
+            return ShowDialog() == DialogResult.OK;
         }
 
         public string CategoryName => txtCategoryName.Text;
         public Category ParentCategory => cmbCategoryParent.SelectedItem as Category;
 
+        private void frmAddCategory_Load(object sender, EventArgs e)
+        {
+            cmbCategoryParent.SelectedIndex = -1;
+        }
     }
 }

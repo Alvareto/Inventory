@@ -4,22 +4,18 @@ using NHibernate;
 
 namespace Inventory
 {
-    public partial class NHibernateRepository<T> : IRepository<T>
+    public class NHibernateRepository<T> : IRepository<T>
     {
         protected ISession session;
 
         public NHibernateRepository() : this(NHibernateSessionProvider.SessionFactory.OpenSession())
         {
-
         }
 
         public NHibernateRepository(ISession session)
         {
-
             if (session == null)
-            {
                 throw new ArgumentNullException("session");
-            }
             this.session = session;
         }
 
@@ -43,40 +39,30 @@ namespace Inventory
 
         public virtual void Add(T entity)
         {
-
             if (entity == null)
-            {
                 throw new ArgumentNullException("entity");
-            }
 
             if (!session.Transaction.IsActive)
-            {
-                using (ITransaction transaction = session.BeginTransaction())
+                using (var transaction = session.BeginTransaction())
                 {
                     session.Save(entity);
                     transaction.Commit();
                 }
-            }
             else
                 session.Save(entity);
         }
 
         public virtual void Remove(T entity)
         {
-
             if (entity == null)
-            {
                 throw new ArgumentNullException("entity");
-            }
 
             if (!session.Transaction.IsActive)
-            {
-                using (ITransaction transaction = session.BeginTransaction())
+                using (var transaction = session.BeginTransaction())
                 {
                     session.Delete(entity);
                     transaction.Commit();
                 }
-            }
             else
                 session.Delete(entity);
         }

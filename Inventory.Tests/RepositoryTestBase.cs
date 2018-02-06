@@ -7,8 +7,10 @@ using NHibernate.Tool.hbm2ddl;
 namespace Inventory.Tests
 {
     /// <summary>
-    /// Class RepositoryTestBase will create a session in start of a Test Fixture, and create all database schema , and then close it at the end of the fixture.
-    /// Then by just inheriting from that class , you can write unit tests that will test your repository transactions to the database.
+    ///     Class RepositoryTestBase will create a session in start of a Test Fixture, and create all database schema , and
+    ///     then close it at the end of the fixture.
+    ///     Then by just inheriting from that class , you can write unit tests that will test your repository transactions to
+    ///     the database.
     /// </summary>
     [TestClass]
     public class RepositoryTestBase<T> where T : new()

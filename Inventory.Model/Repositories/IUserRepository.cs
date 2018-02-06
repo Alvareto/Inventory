@@ -2,7 +2,7 @@
 
 namespace Inventory
 {
-    public partial interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         ICollection<User> GetAll();
         ICollection<User> GetAllActive();

@@ -2,7 +2,7 @@
 
 namespace Inventory
 {
-    public partial interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         void Save();
     }

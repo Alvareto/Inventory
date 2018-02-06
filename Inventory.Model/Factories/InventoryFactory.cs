@@ -6,7 +6,7 @@ namespace Inventory.Model
     {
         public static Inventory CreateInventory(Equipment equipment, User user, DateTime dateFrom)
         {
-            return new Inventory()
+            return new Inventory
             {
                 Equipments = equipment,
                 Users = user,

@@ -7,19 +7,14 @@ namespace Inventory.Forms
 {
     public partial class frmViewEquipment : Form, IShowEquipmentListView
     {
-        private IMainFormController _controller = null;
-        BindingSource equipmentBindingSource = new BindingSource();
-        BindingSource inventoryBindingSource = new BindingSource();
-        BindingSource userBindingSource = new BindingSource();
+        private IMainFormController _controller;
+        private readonly BindingSource equipmentBindingSource = new BindingSource();
+        private readonly BindingSource inventoryBindingSource = new BindingSource();
+        private readonly BindingSource userBindingSource = new BindingSource();
 
         public frmViewEquipment()
         {
             InitializeComponent();
-        }
-
-        private void frmViewEquipment_Load(object sender, EventArgs e)
-        {
-
         }
 
         public void Display(IMainFormController inMainController, List<Equipment> inListEquipment)
@@ -53,11 +48,9 @@ namespace Inventory.Forms
             listUser.DataSource = userBindingSource;
             listInventory.SelectionChanged += (sender, args) =>
             {
-                var inv = (Inventory)listInventory.CurrentRow.DataBoundItem;
+                var inv = (Inventory) listInventory.CurrentRow.DataBoundItem;
                 if (inv != null)
-                {
-                    userBindingSource.DataSource = new List<User> { inv.Users };
-                }
+                    userBindingSource.DataSource = new List<User> {inv.Users};
             };
 
             listEquipment.AutoGenerateColumns = true;
@@ -78,27 +71,31 @@ namespace Inventory.Forms
             listUser.Columns["Inventory"].Visible = false;
 
 
-            this.Show();
+            Show();
+        }
+
+        private void frmViewEquipment_Load(object sender, EventArgs e)
+        {
         }
 
         private void listEquipment_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var eq = (Equipment)listEquipment.CurrentRow?.DataBoundItem;
+            var eq = (Equipment) listEquipment.CurrentRow?.DataBoundItem;
             if (eq != null)
-            {
                 inventoryBindingSource.DataSource = eq.Users;
-            }
             //listInventory.DataSource = inventoryBindingSource;
         }
 
         private void listEquipment_SelectionChanged(object sender, EventArgs e)
         {
-            var eq = (Equipment)listEquipment.CurrentRow.DataBoundItem;
+            var eq = (Equipment) listEquipment.CurrentRow.DataBoundItem;
             if (eq != null)
             {
                 inventoryBindingSource.DataSource = eq.Users;
+                userBindingSource.DataSource = new List<User> {eq.CurrentInventoryUser};
             }
         }
+
         private void btnAddNewEquipment_Click(object sender, EventArgs e)
         {
             _controller.AddEquipment();
@@ -121,7 +118,7 @@ namespace Inventory.Forms
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

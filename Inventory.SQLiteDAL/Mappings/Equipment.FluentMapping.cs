@@ -6,67 +6,68 @@ namespace Inventory
     {
         public EquipmentMap()
         {
-              Schema(@"main");
-              Table(@"Assets");
-              LazyLoad();
-              Id(x => x.Id)
+            Schema(@"main");
+            Table(@"Assets");
+            LazyLoad();
+            Id(x => x.Id)
                 .Column("AssetId")
                 .CustomType("Int32")
-                .Access.Property()                
+                .Access.Property()
                 .GeneratedBy.Identity();
-              Map(x => x.Active)    
+            Map(x => x.Active)
                 .Column("IsActive")
                 .CustomType("Boolean")
                 .Access.Property()
                 .Generated.Never();
-              Map(x => x.DateAcquired)    
+            Map(x => x.DateAcquired)
                 .Column("DateAcquired")
                 .CustomType("DateTime")
                 .Access.Property()
                 .Generated.Never();
-              Map(x => x.DateDisposed)    
+            Map(x => x.DateDisposed)
                 .Column("DateDisposed")
                 .CustomType("DateTime")
                 .Access.Property()
                 .Generated.Never();
-              Map(x => x.Name)    
+            Map(x => x.Name)
                 .Column("Name")
                 .CustomType("String")
                 .Access.Property()
                 .Generated.Never();
-              HasManyToMany<Inventory>(x => x.Users)
+            HasManyToMany(x => x.Users)
                 .Access.Property()
                 .AsBag()
                 .Cascade.SaveUpdate()
                 .LazyLoad()
                 //.Inverse()
                 .Generic()
-                .Component(c => {
-                        c.Map(x => x.DateFrom)    
-                            .Column("DateFrom")
-                            .CustomType("DateTime")
-                            .Access.Property()
-                            .Generated.Never();
-                        c.Map(x => x.DateTo)    
-                            .Column("DateTo")
-                            .CustomType("DateTime")
-                            .Access.Property()
-                            .Generated.Never();
-                        c.References<User>(r => r.Users, "UserId");
-                        })
+                .Component(c =>
+                {
+                    c.Map(x => x.DateFrom)
+                        .Column("DateFrom")
+                        .CustomType("DateTime")
+                        .Access.Property()
+                        .Generated.Never();
+                    c.Map(x => x.DateTo)
+                        .Column("DateTo")
+                        .CustomType("DateTime")
+                        .Access.Property()
+                        .Generated.Never();
+                    c.References(r => r.Users, "UserId");
+                })
                 .Table("Inventory")
                 .FetchType.Join()
                 .ChildKeyColumns.Add("UserId", mapping => mapping.Name("UserId")
-                                                                     .Nullable())
+                    .Nullable())
                 .ParentKeyColumns.Add("AssetId", mapping => mapping.Name("AssetId")
-                                                                     .Nullable());
-              References(x => x.Category)
+                    .Nullable());
+            References(x => x.Category)
                 .Class<Category>()
                 .Access.Property()
                 .Cascade.SaveUpdate()
                 .LazyLoad()
                 .Columns("CategoryId");
-              ExtendMapping();
+            ExtendMapping();
         }
 
         #region Partial Methods
@@ -75,5 +76,4 @@ namespace Inventory
 
         #endregion
     }
-
 }

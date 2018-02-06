@@ -6,7 +6,7 @@ using NHibernate.Linq;
 
 namespace Inventory
 {
-    public partial class InventoryRepository : NHibernateRepository<Inventory>, IInventoryRepository
+    public class InventoryRepository : NHibernateRepository<Inventory>, IInventoryRepository
     {
         private static InventoryRepository _instance;
 
@@ -14,16 +14,12 @@ namespace Inventory
         {
         }
 
-        public static InventoryRepository GetInstance(ISession session)
-        {
-            return _instance ?? (_instance = new InventoryRepository(session));
-        }
-
         public virtual Inventory GetLatest(Equipment equipment)
         {
             //var inv = session.Get<Equipment>(equipment.Id).Users.Where(e => e.DateTo == null);
 
-            var inventory = equipment.Users.Where(e => e.DateTo == null).OrderByDescending(e => e.DateFrom).FirstOrDefault();
+            var inventory = equipment.Users.Where(e => e.DateTo == null).OrderByDescending(e => e.DateFrom)
+                .FirstOrDefault();
 
             return inventory;
         }
@@ -32,7 +28,8 @@ namespace Inventory
         {
             //var inv = session.Get<User>(user.Id).Equipments;
 
-            var inventory = user.Equipments.Where(e => e.DateTo == null).OrderByDescending(e => e.DateFrom).FirstOrDefault();
+            var inventory = user.Equipments.Where(e => e.DateTo == null).OrderByDescending(e => e.DateFrom)
+                .FirstOrDefault();
 
             return inventory;
         }
@@ -43,21 +40,22 @@ namespace Inventory
 
             var inv = new List<Inventory>();
             foreach (var equipment in eq)
-            {
                 inv.AddRange(equipment.Users);
-            }
 
             return inv;
         }
 
+        public static InventoryRepository GetInstance(ISession session)
+        {
+            return _instance ?? (_instance = new InventoryRepository(session));
+        }
+
         public virtual void Add(Equipment e, User u)
         {
-
         }
 
         public virtual void Transfer(Equipment e, User u, DateTime transferDate)
         {
-
         }
     }
 }

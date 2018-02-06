@@ -8,6 +8,8 @@ namespace Inventory.Forms
 {
     public partial class frmDisposeEquipment : Form, IDisposeEquipmentView
     {
+        private readonly BindingList<Equipment> equipmentList = new BindingList<Equipment>();
+
         public frmDisposeEquipment()
         {
             InitializeComponent();
@@ -17,21 +19,19 @@ namespace Inventory.Forms
             cmbEquipment.DataSource = equipmentList;
         }
 
-        private void frmDisposeEquipment_Load(object sender, EventArgs e)
-        {
-            cmbEquipment.SelectedIndex = -1;
-        }
-
-        private readonly BindingList<Equipment> equipmentList = new BindingList<Equipment>();
-
         public bool Display(List<Equipment> assets)
         {
             assets.ForEach(c => equipmentList.Add(c));
 
-            return this.ShowDialog() == DialogResult.OK;
+            return ShowDialog() == DialogResult.OK;
         }
 
         public Equipment SelectedEquipment => cmbEquipment.SelectedItem as Equipment;
         public DateTime DateDisposed => dateDisposed.Value;
+
+        private void frmDisposeEquipment_Load(object sender, EventArgs e)
+        {
+            cmbEquipment.SelectedIndex = -1;
+        }
     }
 }

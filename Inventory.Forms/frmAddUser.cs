@@ -11,18 +11,17 @@ namespace Inventory.Forms
             InitializeComponent();
         }
 
-        private void frmAddUser_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public bool Display()
         {
-            return this.ShowDialog() == DialogResult.OK;
+            return ShowDialog() == DialogResult.OK;
         }
 
         public string FirstName => txtFirstName.Text;
         public string LastName => txtLastName.Text;
         public DateTime DateHired => dateHired.Value;
+
+        private void frmAddUser_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

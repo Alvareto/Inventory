@@ -1,6 +1,6 @@
 ﻿namespace Inventory
 {
-    public partial interface IUnitOfWorkFactory
+    public interface IUnitOfWorkFactory
     {
         IUnitOfWork Create();
     }

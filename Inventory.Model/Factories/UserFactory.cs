@@ -6,7 +6,7 @@ namespace Inventory.Model
     {
         public static User CreateUser(string fName, string lName, DateTime dateHired)
         {
-            return new User()
+            return new User
             {
                 FirstName = fName,
                 LastName = lName,
@@ -18,7 +18,7 @@ namespace Inventory.Model
 
         public static User CreateDefaultUser(string lName)
         {
-            return new User()
+            return new User
             {
                 FirstName = "Administrator",
                 LastName = lName,

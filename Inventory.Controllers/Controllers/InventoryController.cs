@@ -9,37 +9,38 @@ namespace Inventory.Controllers
 {
     public class InventoryController : IInventoryController
     {
-        private readonly IUnitOfWorkFactory _uowFactory = null;
-        private readonly IUserRepository _userRepository = null;
-        private readonly IEquipmentRepository _equipmentRepository = null;
-        private readonly IInventoryRepository _inventoryRepository = null;
-        private ISession context => NHibernateSessionProvider.GetSession();
+        private readonly IEquipmentRepository _equipmentRepository;
+        private readonly IInventoryRepository _inventoryRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
+        private readonly IUserRepository _userRepository;
 
         public InventoryController()
         {
-            this._uowFactory = new NHibernateUnitOfWorkFactory(context);
-            this._equipmentRepository = EquipmentRepository.GetInstance(context);
-            this._userRepository = UserRepository.GetInstance(context);
-            this._inventoryRepository = InventoryRepository.GetInstance(context);
+            _uowFactory = new NHibernateUnitOfWorkFactory(context);
+            _equipmentRepository = EquipmentRepository.GetInstance(context);
+            _userRepository = UserRepository.GetInstance(context);
+            _inventoryRepository = InventoryRepository.GetInstance(context);
         }
 
-        public InventoryController(IUnitOfWorkFactory uowFactory, IUserRepository inUserRepo, IEquipmentRepository inEquipmentRepo)
+        public InventoryController(IUnitOfWorkFactory uowFactory, IUserRepository inUserRepo,
+            IEquipmentRepository inEquipmentRepo)
         {
-            this._uowFactory = uowFactory;
-            this._userRepository = inUserRepo;
-            this._equipmentRepository = inEquipmentRepo;
-            this._inventoryRepository = InventoryRepository.GetInstance(context);
+            _uowFactory = uowFactory;
+            _userRepository = inUserRepo;
+            _equipmentRepository = inEquipmentRepo;
+            _inventoryRepository = InventoryRepository.GetInstance(context);
         }
+
+        private ISession context => NHibernateSessionProvider.GetSession();
 
 
         public void Assign(IAssignEquipmentView inForm)
         {
             if (inForm.Display(_equipmentRepository.GetAll().ToList(), _userRepository.GetAllActive().ToList()))
-            {
                 try
                 {
                     // when assigning - we have to actually transfer from current equipment assignment (company) to new user
-                    using (IUnitOfWork uow = _uowFactory.Create())
+                    using (var uow = _uowFactory.Create())
                     {
                         var user = inForm.SelectedUser;
 
@@ -53,29 +54,21 @@ namespace Inventory.Controllers
 
                         uow.Save();
                     }
-
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                     throw;
                 }
-            }
-        }
-
-        public void Return()
-        {
-
         }
 
         public void Transfer(ITransferEquipmentView inForm)
         {
             if (inForm.Display(_equipmentRepository.GetAll().ToList()
                 , _userRepository.GetAllActive().ToList()))
-            {
                 try
                 {
-                    using (IUnitOfWork uow = _uowFactory.Create())
+                    using (var uow = _uowFactory.Create())
                     {
                         var user = inForm.SelectedUserTo;
 
@@ -98,7 +91,10 @@ namespace Inventory.Controllers
                     Console.WriteLine(ex);
                     throw;
                 }
-            }
+        }
+
+        public void Return()
+        {
         }
     }
 }

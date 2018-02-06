@@ -7,10 +7,10 @@ namespace Inventory.Forms
 {
     public partial class frmViewUsers : Form, IShowUserListView
     {
-        private IMainFormController _controller = null;
-        BindingSource userBindingSource = new BindingSource();
-        BindingSource inventoryBindingSource = new BindingSource();
-        BindingSource equipmentBindingSource = new BindingSource();
+        private IMainFormController _controller;
+        private readonly BindingSource equipmentBindingSource = new BindingSource();
+        private readonly BindingSource inventoryBindingSource = new BindingSource();
+        private readonly BindingSource userBindingSource = new BindingSource();
 
         public frmViewUsers()
         {
@@ -39,27 +39,29 @@ namespace Inventory.Forms
 
             listUser.SelectionChanged += (sender, args) =>
             {
-                var u = (User)listUser.CurrentRow.DataBoundItem;
+                var u = (User) listUser.CurrentRow?.DataBoundItem;
                 if (u != null)
                 {
                     inventoryBindingSource.DataSource = u.Equipments;
+                    equipmentBindingSource.DataSource = u.Inventory;
                 }
             };
 
             inventoryBindingSource.DataSourceChanged += (sender, args) =>
             {
                 inventoryBindingSource.ResetBindings(false);
+                //equipmentBindingSource.ResetBindings(false);
                 listInventory.DataSource = inventoryBindingSource;
+                //listEquipment.DataSource = equipmentBindingSource;
                 listInventory.Update();
+                //listEquipment.Update();
             };
 
             listInventory.SelectionChanged += (sender, args) =>
             {
-                var inv = (Inventory)listInventory.CurrentRow.DataBoundItem;
+                var inv = (Inventory) listInventory.CurrentRow?.DataBoundItem;
                 if (inv != null)
-                {
-                    equipmentBindingSource.DataSource = new List<Equipment> { inv.Equipments };
-                }
+                    equipmentBindingSource.DataSource = new List<Equipment> {inv.Equipments};
             };
 
             equipmentBindingSource.DataSourceChanged += (sender, args) =>
@@ -82,7 +84,7 @@ namespace Inventory.Forms
             listUser.Columns["LastName"].Visible = false;
             listUser.Columns["Inventory"].Visible = false;
 
-            this.Show();
+            Show();
         }
 
         private void btnAddNewUser_Click(object sender, EventArgs e)
@@ -92,17 +94,26 @@ namespace Inventory.Forms
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void frmViewUsers_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
             _controller.DeactivateUser();
+        }
+
+        private void btnAssignEquipment_Click(object sender, EventArgs e)
+        {
+            _controller.AssignEquipment();
+        }
+
+        private void btnTransferEquipment_Click(object sender, EventArgs e)
+        {
+            _controller.TransferEquipment();
         }
     }
 }

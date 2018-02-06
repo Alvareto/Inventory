@@ -34,6 +34,8 @@
             this.listInventory = new System.Windows.Forms.DataGridView();
             this.listEquipment = new System.Windows.Forms.DataGridView();
             this.btnDeactivate = new System.Windows.Forms.Button();
+            this.btnTransferEquipment = new System.Windows.Forms.Button();
+            this.btnAssignEquipment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listEquipment)).BeginInit();
@@ -41,6 +43,7 @@
             // 
             // listUser
             // 
+            this.listUser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listUser.Location = new System.Drawing.Point(12, 12);
             this.listUser.Name = "listUser";
@@ -64,7 +67,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(409, 482);
+            this.btnClose.Location = new System.Drawing.Point(410, 514);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(140, 27);
@@ -75,6 +78,7 @@
             // 
             // listInventory
             // 
+            this.listInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listInventory.Location = new System.Drawing.Point(12, 239);
             this.listInventory.Name = "listInventory";
@@ -84,10 +88,11 @@
             // 
             // listEquipment
             // 
+            this.listEquipment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listEquipment.Location = new System.Drawing.Point(12, 385);
             this.listEquipment.Name = "listEquipment";
-            this.listEquipment.Size = new System.Drawing.Size(537, 92);
+            this.listEquipment.Size = new System.Drawing.Size(537, 124);
             this.listEquipment.TabIndex = 10;
             // 
             // btnDeactivate
@@ -103,11 +108,37 @@
             this.btnDeactivate.UseVisualStyleBackColor = false;
             this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
+            // btnTransferEquipment
+            // 
+            this.btnTransferEquipment.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnTransferEquipment.Location = new System.Drawing.Point(124, 514);
+            this.btnTransferEquipment.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTransferEquipment.Name = "btnTransferEquipment";
+            this.btnTransferEquipment.Size = new System.Drawing.Size(109, 27);
+            this.btnTransferEquipment.TabIndex = 13;
+            this.btnTransferEquipment.Text = "Transfer equipment";
+            this.btnTransferEquipment.UseVisualStyleBackColor = true;
+            this.btnTransferEquipment.Click += new System.EventHandler(this.btnTransferEquipment_Click);
+            // 
+            // btnAssignEquipment
+            // 
+            this.btnAssignEquipment.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAssignEquipment.Location = new System.Drawing.Point(11, 514);
+            this.btnAssignEquipment.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAssignEquipment.Name = "btnAssignEquipment";
+            this.btnAssignEquipment.Size = new System.Drawing.Size(109, 27);
+            this.btnAssignEquipment.TabIndex = 12;
+            this.btnAssignEquipment.Text = "Assign equipment";
+            this.btnAssignEquipment.UseVisualStyleBackColor = true;
+            this.btnAssignEquipment.Click += new System.EventHandler(this.btnAssignEquipment_Click);
+            // 
             // frmViewUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 520);
+            this.ClientSize = new System.Drawing.Size(561, 552);
+            this.Controls.Add(this.btnTransferEquipment);
+            this.Controls.Add(this.btnAssignEquipment);
             this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.listEquipment);
             this.Controls.Add(this.listInventory);
@@ -132,5 +163,7 @@
         private System.Windows.Forms.DataGridView listInventory;
         private System.Windows.Forms.DataGridView listEquipment;
         private System.Windows.Forms.Button btnDeactivate;
+        private System.Windows.Forms.Button btnTransferEquipment;
+        private System.Windows.Forms.Button btnAssignEquipment;
     }
 }

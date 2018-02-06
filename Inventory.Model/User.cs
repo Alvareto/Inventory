@@ -1,27 +1,165 @@
-﻿using System.ComponentModel;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Inventory
 {
     public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
     {
-
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(System.String.Empty);
-
-        private int _Id;
-
-        private string _FirstName;
-
-        private string _LastName;
-
-        private System.DateTime _DateHired;
-
-        private System.Nullable<System.DateTime> _DateFired;
+        private static readonly PropertyChangingEventArgs emptyChangingEventArgs =
+            new PropertyChangingEventArgs(string.Empty);
 
         private bool _Active;
 
+        private DateTime? _DateFired;
+
+        private DateTime _DateHired;
+
         private IList<Inventory> _Equipments;
+
+        private string _FirstName;
+
+        private int _Id;
+
+        private string _LastName;
+
+        public User()
+        {
+            _Equipments = new List<Inventory>();
+            OnCreated();
+        }
+
+        public virtual int Id
+        {
+            get => _Id;
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    SendPropertyChanging("Id");
+                    _Id = value;
+                    SendPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+
+        public virtual string Name => $"{FirstName} {LastName}";
+
+        public virtual string FirstName
+        {
+            get => _FirstName;
+            set
+            {
+                if (_FirstName != value)
+                {
+                    OnFirstNameChanging(value);
+                    SendPropertyChanging("FirstName");
+                    _FirstName = value;
+                    SendPropertyChanged("FirstName");
+                    OnFirstNameChanged();
+                }
+            }
+        }
+
+        public virtual string LastName
+        {
+            get => _LastName;
+            set
+            {
+                if (_LastName != value)
+                {
+                    OnLastNameChanging(value);
+                    SendPropertyChanging("LastName");
+                    _LastName = value;
+                    SendPropertyChanged("LastName");
+                    OnLastNameChanged();
+                }
+            }
+        }
+
+        public virtual DateTime DateHired
+        {
+            get => _DateHired;
+            set
+            {
+                if (_DateHired != value)
+                {
+                    OnDateHiredChanging(value);
+                    SendPropertyChanging("DateHired");
+                    _DateHired = value;
+                    SendPropertyChanged("DateHired");
+                    OnDateHiredChanged();
+                }
+            }
+        }
+
+        public virtual DateTime? DateFired
+        {
+            get => _DateFired;
+            set
+            {
+                if (_DateFired != value)
+                {
+                    OnDateFiredChanging(value);
+                    SendPropertyChanging("DateFired");
+                    _DateFired = value;
+                    SendPropertyChanged("DateFired");
+                    OnDateFiredChanged();
+                }
+            }
+        }
+
+        public virtual bool Active
+        {
+            get => _Active;
+            set
+            {
+                if (_Active != value)
+                {
+                    OnActiveChanging(value);
+                    SendPropertyChanging("Active");
+                    _Active = value;
+                    SendPropertyChanged("Active");
+                    OnActiveChanged();
+                }
+            }
+        }
+
+        public virtual IList<Equipment> Inventory => Equipments.Select(e => e.Equipments).ToList();
+
+        public virtual IList<Inventory> Equipments
+        {
+            get => _Equipments;
+            set => _Equipments = value;
+        }
+
+        public virtual event PropertyChangedEventHandler PropertyChanged;
+
+        public virtual event PropertyChangingEventHandler PropertyChanging;
+
+        protected virtual void SendPropertyChanging()
+        {
+            var handler = PropertyChanging;
+            if (handler != null)
+                handler(this, emptyChangingEventArgs);
+        }
+
+        protected virtual void SendPropertyChanging(string propertyName)
+        {
+            var handler = PropertyChanging;
+            if (handler != null)
+                handler(this, new PropertyChangingEventArgs(propertyName));
+        }
+
+        protected virtual void SendPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         #region Extensibility Method Definitions
 
@@ -35,10 +173,10 @@ namespace Inventory
         partial void OnLastNameChanging(string value);
 
         partial void OnLastNameChanged();
-        partial void OnDateHiredChanging(System.DateTime value);
+        partial void OnDateHiredChanging(DateTime value);
 
         partial void OnDateHiredChanged();
-        partial void OnDateFiredChanging(System.Nullable<System.DateTime> value);
+        partial void OnDateFiredChanging(DateTime? value);
 
         partial void OnDateFiredChanged();
         partial void OnActiveChanging(bool value);
@@ -46,164 +184,5 @@ namespace Inventory
         partial void OnActiveChanged();
 
         #endregion
-        public User()
-        {
-            this._Equipments = new List<Inventory>();
-            OnCreated();
-        }
-
-        public virtual int Id
-        {
-            get
-            {
-                return this._Id;
-            }
-            set
-            {
-                if (this._Id != value)
-                {
-                    this.OnIdChanging(value);
-                    this.SendPropertyChanging("Id");
-                    this._Id = value;
-                    this.SendPropertyChanged("Id");
-                    this.OnIdChanged();
-                }
-            }
-        }
-        public virtual string Name => $"{FirstName} {LastName}";
-        public virtual string FirstName
-        {
-            get
-            {
-                return this._FirstName;
-            }
-            set
-            {
-                if (this._FirstName != value)
-                {
-                    this.OnFirstNameChanging(value);
-                    this.SendPropertyChanging("FirstName");
-                    this._FirstName = value;
-                    this.SendPropertyChanged("FirstName");
-                    this.OnFirstNameChanged();
-                }
-            }
-        }
-
-        public virtual string LastName
-        {
-            get
-            {
-                return this._LastName;
-            }
-            set
-            {
-                if (this._LastName != value)
-                {
-                    this.OnLastNameChanging(value);
-                    this.SendPropertyChanging("LastName");
-                    this._LastName = value;
-                    this.SendPropertyChanged("LastName");
-                    this.OnLastNameChanged();
-                }
-            }
-        }
-
-        public virtual System.DateTime DateHired
-        {
-            get
-            {
-                return this._DateHired;
-            }
-            set
-            {
-                if (this._DateHired != value)
-                {
-                    this.OnDateHiredChanging(value);
-                    this.SendPropertyChanging("DateHired");
-                    this._DateHired = value;
-                    this.SendPropertyChanged("DateHired");
-                    this.OnDateHiredChanged();
-                }
-            }
-        }
-
-        public virtual System.Nullable<System.DateTime> DateFired
-        {
-            get
-            {
-                return this._DateFired;
-            }
-            set
-            {
-                if (this._DateFired != value)
-                {
-                    this.OnDateFiredChanging(value);
-                    this.SendPropertyChanging("DateFired");
-                    this._DateFired = value;
-                    this.SendPropertyChanged("DateFired");
-                    this.OnDateFiredChanged();
-                }
-            }
-        }
-
-        public virtual bool Active
-        {
-            get
-            {
-                return this._Active;
-            }
-            set
-            {
-                if (this._Active != value)
-                {
-                    this.OnActiveChanging(value);
-                    this.SendPropertyChanging("Active");
-                    this._Active = value;
-                    this.SendPropertyChanged("Active");
-                    this.OnActiveChanged();
-                }
-            }
-        }
-
-        public virtual IList<Equipment> Inventory => Equipments.Select(e => e.Equipments).ToList();
-
-        public virtual IList<Inventory> Equipments
-        {
-            get
-            {
-                return this._Equipments;
-            }
-            set
-            {
-                this._Equipments = value;
-            }
-        }
-
-        public virtual event PropertyChangingEventHandler PropertyChanging;
-
-        public virtual event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void SendPropertyChanging()
-        {
-            var handler = this.PropertyChanging;
-            if (handler != null)
-                handler(this, emptyChangingEventArgs);
-        }
-
-        protected virtual void SendPropertyChanging(System.String propertyName)
-        {
-            var handler = this.PropertyChanging;
-            if (handler != null)
-                handler(this, new PropertyChangingEventArgs(propertyName));
-        }
-
-        protected virtual void SendPropertyChanged(System.String propertyName)
-        {
-            var handler = this.PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
-
 }

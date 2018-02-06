@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Inventory.Core;
 using NHibernate;
 using NHibernate.Linq;
 
 namespace Inventory
 {
-    public partial class EquipmentRepository : NHibernateRepository<Equipment>, IEquipmentRepository
+    public class EquipmentRepository : NHibernateRepository<Equipment>, IEquipmentRepository
     {
         private static EquipmentRepository _instance;
 
@@ -14,23 +14,18 @@ namespace Inventory
         {
         }
 
-        public static EquipmentRepository GetInstance(ISession session)
-        {
-            return _instance ?? (_instance = new EquipmentRepository(session));
-        }
-
         public virtual ICollection<Equipment> GetAll()
         {
-            return session.Query<Equipment>().FetchMany(e => e.Users).ThenFetch(e => e.Users).ToList<Equipment>();
+            return session.Query<Equipment>().FetchMany(e => e.Users).ThenFetch(e => e.Users).ToList();
         }
 
         public ICollection<Equipment> GetAllUnassigned()
         {
-
             var eq = session.Query<Equipment>()
                 .FetchMany(e => e.Users)
                 .Where(e => e.Active).ToList();
-            var inv = eq.SelectMany(e => e.Users).Where(e => e.DateTo != null || e.Users.LastName.Equals(Constants.ADMINISTRATOR_LASTNAME)).ToList();
+            var inv = eq.SelectMany(e => e.Users)
+                .Where(e => e.DateTo != null || e.Users.LastName.Equals(Constants.ADMINISTRATOR_LASTNAME)).ToList();
 
             return inv.Select(r => r.Equipments).ToList();
         }
@@ -67,6 +62,9 @@ namespace Inventory
             //return map.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
-
+        public static EquipmentRepository GetInstance(ISession session)
+        {
+            return _instance ?? (_instance = new EquipmentRepository(session));
+        }
     }
 }

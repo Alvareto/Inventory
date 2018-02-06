@@ -17,7 +17,6 @@ namespace Inventory.Forms
 
         private void frmMainWindow_Load(object sender, EventArgs e)
         {
-
         }
 
         private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,6 +53,7 @@ namespace Inventory.Forms
         {
             _controller.AddCategory();
         }
+
         // User -> inventory
         private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {

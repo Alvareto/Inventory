@@ -1,61 +1,56 @@
-﻿using System.ComponentModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Inventory
 {
-    public partial class Settings : INotifyPropertyChanging, INotifyPropertyChanged {
-
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(System.String.Empty);
+    public partial class Settings : INotifyPropertyChanging, INotifyPropertyChanged
+    {
+        private static readonly PropertyChangingEventArgs emptyChangingEventArgs =
+            new PropertyChangingEventArgs(string.Empty);
 
         private IList<User> _Administrators;
-    
-        #region Extensibility Method Definitions
-        
-        partial void OnCreated();
-        
-        #endregion
+
         public Settings()
         {
-            this._Administrators = new List<User>();
+            _Administrators = new List<User>();
             OnCreated();
         }
 
         public virtual IList<User> Administrators
         {
-            get
-            {
-                return this._Administrators;
-            }
-            set
-            {
-                this._Administrators = value;
-            }
+            get => _Administrators;
+            set => _Administrators = value;
         }
-   
-        public virtual event PropertyChangingEventHandler PropertyChanging;
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
+        public virtual event PropertyChangingEventHandler PropertyChanging;
+
+        #region Extensibility Method Definitions
+
+        partial void OnCreated();
+
+        #endregion
+
         protected virtual void SendPropertyChanging()
         {
-		        var handler = this.PropertyChanging;
+            var handler = PropertyChanging;
             if (handler != null)
                 handler(this, emptyChangingEventArgs);
         }
 
-        protected virtual void SendPropertyChanging(System.String propertyName) 
-        {    
-		        var handler = this.PropertyChanging;
+        protected virtual void SendPropertyChanging(string propertyName)
+        {
+            var handler = PropertyChanging;
             if (handler != null)
                 handler(this, new PropertyChangingEventArgs(propertyName));
         }
 
-        protected virtual void SendPropertyChanged(System.String propertyName)
-        {    
-		        var handler = this.PropertyChanged;
+        protected virtual void SendPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }

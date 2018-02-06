@@ -2,7 +2,7 @@
 
 namespace Inventory
 {
-    public partial interface IInventoryRepository : IRepository<Inventory>
+    public interface IInventoryRepository : IRepository<Inventory>
     {
         Inventory GetLatest(Equipment equipment);
         Inventory GetLatest(User user);

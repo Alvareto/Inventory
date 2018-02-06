@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Inventory.Core;
 using Inventory.Model;
 using Inventory.SQLiteDAL;
@@ -10,15 +11,13 @@ namespace Inventory.Controllers
 {
     public class CategoriesController
     {
-        private IUnitOfWorkFactory uowFactory;
-        private ICategoryRepository repository;
-
-        private ISession context => NHibernateSessionProvider.GetSession();
+        private readonly ICategoryRepository repository;
+        private readonly IUnitOfWorkFactory uowFactory;
 
         public CategoriesController()
         {
-            this.uowFactory = new NHibernateUnitOfWorkFactory(context);
-            this.repository = CategoryRepository.GetInstance(context);
+            uowFactory = new NHibernateUnitOfWorkFactory(context);
+            repository = CategoryRepository.GetInstance(context);
         }
 
         public CategoriesController(IUnitOfWorkFactory uowFactory, ICategoryRepository repository)
@@ -26,6 +25,8 @@ namespace Inventory.Controllers
             this.uowFactory = uowFactory;
             this.repository = repository;
         }
+
+        private ISession context => NHibernateSessionProvider.GetSession();
 
         public List<Category> Index()
         {
@@ -39,7 +40,7 @@ namespace Inventory.Controllers
 
         public void Create(Category entity)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
                 repository.Add(entity);
                 uow.Save();
@@ -48,9 +49,9 @@ namespace Inventory.Controllers
 
         public void Edit(Category entity)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
-                Category original = repository.GetByKey(entity.Id);
+                var original = repository.GetByKey(entity.Id);
                 original.Id = entity.Id;
                 original.Name = entity.Name;
 
@@ -60,7 +61,7 @@ namespace Inventory.Controllers
 
         public void Delete(int Id)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
                 repository.Remove(repository.GetByKey(Id));
                 uow.Save();
@@ -70,25 +71,22 @@ namespace Inventory.Controllers
         internal void Create(IAddNewCategoryView inForm)
         {
             if (inForm.Display(repository.GetAll().ToList()))
-            {
                 try
                 {
                     var category = CategoryFactory.CreateCategory(inForm.CategoryName, inForm.ParentCategory);
-                    this.Create(category);
+                    Create(category);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                     throw;
                 }
-            }
         }
 
-        private static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source, System.Linq.Expressions.Expression<Func<TSource, TKey>> keySelector, bool ascending)
+        private static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source,
+            Expression<Func<TSource, TKey>> keySelector, bool ascending)
         {
-
             return ascending ? source.OrderBy(keySelector) : source.OrderByDescending(keySelector);
         }
     }
 }
-

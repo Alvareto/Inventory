@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using NHibernate;
 using NHibernate.Linq;
 
 namespace Inventory
 {
-    public partial class UserRepository : NHibernateRepository<User>, IUserRepository
+    public class UserRepository : NHibernateRepository<User>, IUserRepository
     {
         private static UserRepository _instance;
 
@@ -14,14 +14,9 @@ namespace Inventory
         {
         }
 
-        public static UserRepository GetInstance(ISession session)
-        {
-            return _instance ?? (_instance = new UserRepository(session));
-        }
-
         public virtual ICollection<User> GetAll()
         {
-            return session.CreateQuery(string.Format("from User")).List<User>();
+            return session.CreateQuery("from User").List<User>();
         }
 
         public ICollection<User> GetAllActive()
@@ -32,6 +27,11 @@ namespace Inventory
         public virtual User GetByKey(int _Id)
         {
             return session.Get<User>(_Id);
+        }
+
+        public static UserRepository GetInstance(ISession session)
+        {
+            return _instance ?? (_instance = new UserRepository(session));
         }
 
         public virtual ICollection<Equipment> GetAllCurrentEquipment(int _userId)

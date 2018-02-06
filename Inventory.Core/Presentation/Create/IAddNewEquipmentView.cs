@@ -5,10 +5,9 @@ namespace Inventory.Core
 {
     public interface IAddNewEquipmentView
     {
-        bool Display(List<Category> categories);
-
         string EquipmentName { get; }
         Category EquipmentCategory { get; }
         DateTime DateAcquired { get; }
+        bool Display(List<Category> categories);
     }
 }

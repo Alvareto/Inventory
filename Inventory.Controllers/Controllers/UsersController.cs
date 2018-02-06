@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Inventory.Core;
 using Inventory.Model;
 using Inventory.SQLiteDAL;
@@ -10,15 +11,13 @@ namespace Inventory.Controllers
 {
     public class UsersController
     {
-        private IUnitOfWorkFactory uowFactory;
-        private IUserRepository repository;
-
-        private ISession context => NHibernateSessionProvider.GetSession();
+        private readonly IUserRepository repository;
+        private readonly IUnitOfWorkFactory uowFactory;
 
         public UsersController()
         {
-            this.uowFactory = new NHibernateUnitOfWorkFactory(context);
-            this.repository = UserRepository.GetInstance(context);
+            uowFactory = new NHibernateUnitOfWorkFactory(context);
+            repository = UserRepository.GetInstance(context);
         }
 
         public UsersController(IUnitOfWorkFactory uowFactory, IUserRepository repository)
@@ -26,6 +25,8 @@ namespace Inventory.Controllers
             this.uowFactory = uowFactory;
             this.repository = repository;
         }
+
+        private ISession context => NHibernateSessionProvider.GetSession();
 
         private List<User> Index()
         {
@@ -39,7 +40,7 @@ namespace Inventory.Controllers
 
         private void Create(User entity)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
                 repository.Add(entity);
                 uow.Save();
@@ -49,17 +50,15 @@ namespace Inventory.Controllers
         public void Create(IAddNewUserView inForm)
         {
             if (inForm.Display())
-            {
                 try
                 {
-                    this.Create(UserFactory.CreateUser(inForm.FirstName, inForm.LastName, inForm.DateHired));
+                    Create(UserFactory.CreateUser(inForm.FirstName, inForm.LastName, inForm.DateHired));
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                     throw;
                 }
-            }
         }
 
         private User Details(int Id)
@@ -69,9 +68,9 @@ namespace Inventory.Controllers
 
         private void Edit(User entity)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
-                User original = repository.GetByKey(entity.Id);
+                var original = repository.GetByKey(entity.Id);
                 original.Id = entity.Id;
                 original.FirstName = entity.FirstName;
                 original.LastName = entity.LastName;
@@ -83,30 +82,29 @@ namespace Inventory.Controllers
 
         private void Delete(int Id)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
                 repository.Remove(repository.GetByKey(Id));
                 uow.Save();
             }
         }
 
-        private static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source, System.Linq.Expressions.Expression<Func<TSource, TKey>> keySelector, bool ascending)
+        private static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source,
+            Expression<Func<TSource, TKey>> keySelector, bool ascending)
         {
-
             return ascending ? source.OrderBy(keySelector) : source.OrderByDescending(keySelector);
         }
 
         public void Deactivate(IDeactivateUserView inForm)
         {
-            if (inForm.Display(this.Index()))
+            if (inForm.Display(Index()))
             {
                 var entity = inForm.SelectedUser;
                 entity.Active = false;
                 entity.DateFired = inForm.DateFired;
 
-                this.Edit(entity);
+                Edit(entity);
             }
         }
     }
 }
-

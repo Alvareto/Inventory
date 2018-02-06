@@ -9,9 +9,7 @@ namespace Inventory.Model
             c.Name = name;
 
             if (parent != null)
-            {
                 c.ParentCategory = parent;
-            }
 
             return c;
         }

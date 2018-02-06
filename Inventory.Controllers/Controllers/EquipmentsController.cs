@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Inventory.Core;
 using Inventory.Model;
 using Inventory.SQLiteDAL;
@@ -10,26 +11,28 @@ namespace Inventory.Controllers
 {
     public class EquipmentsController
     {
-        private IUnitOfWorkFactory uowFactory;
-        private IEquipmentRepository repository;
-        private ICategoryRepository categoryRepository;
-        public ISession context => NHibernateSessionProvider.GetSession(); // can we make this per form session?
+        private readonly ICategoryRepository categoryRepository;
+        private readonly IEquipmentRepository repository;
+        private readonly IUnitOfWorkFactory uowFactory;
 
         public EquipmentsController()
         {
             //var context = NHibernateSessionProvider.GetSession();
             var _session = context;
-            this.uowFactory = new NHibernateUnitOfWorkFactory(context);
-            this.repository = EquipmentRepository.GetInstance(_session);
-            this.categoryRepository = CategoryRepository.GetInstance(_session);
+            uowFactory = new NHibernateUnitOfWorkFactory(context);
+            repository = EquipmentRepository.GetInstance(_session);
+            categoryRepository = CategoryRepository.GetInstance(_session);
         }
 
-        public EquipmentsController(IUnitOfWorkFactory uowFactory, IEquipmentRepository repository, ICategoryRepository categoryRepository)
+        public EquipmentsController(IUnitOfWorkFactory uowFactory, IEquipmentRepository repository,
+            ICategoryRepository categoryRepository)
         {
             this.uowFactory = uowFactory;
             this.repository = repository;
             this.categoryRepository = categoryRepository;
         }
+
+        public ISession context => NHibernateSessionProvider.GetSession(); // can we make this per form session?
 
         private List<Equipment> Index()
         {
@@ -38,7 +41,7 @@ namespace Inventory.Controllers
 
         private void Create(Equipment entity)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
                 repository.Add(entity);
                 uow.Save();
@@ -57,9 +60,9 @@ namespace Inventory.Controllers
 
         public void Edit(Equipment entity)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
-                Equipment original = repository.GetByKey(entity.Id);
+                var original = repository.GetByKey(entity.Id);
                 original.Id = entity.Id;
                 original.Active = entity.Active;
                 original.DateAcquired = entity.DateAcquired;
@@ -71,10 +74,9 @@ namespace Inventory.Controllers
         public void Create(IAddNewEquipmentView inForm, IUserRepository userRepository)
         {
             if (inForm.Display(categoryRepository.GetAll().ToList()))
-            {
                 try
                 {
-                    using (IUnitOfWork uow = uowFactory.Create())
+                    using (var uow = uowFactory.Create())
                     {
                         userRepository = UserRepository.GetInstance(context);
                         // make sure that administrator user gets created and "assigned"
@@ -89,7 +91,8 @@ namespace Inventory.Controllers
                             //uow.Save();
                         }
 
-                        var entity = EquipmentFactory.CreateEquipment(inForm.EquipmentName, inForm.EquipmentCategory, inForm.DateAcquired);
+                        var entity = EquipmentFactory.CreateEquipment(inForm.EquipmentName, inForm.EquipmentCategory,
+                            inForm.DateAcquired);
                         var inventory = InventoryFactory.CreateInventory(entity, user, entity.DateAcquired);
                         entity.Users.Add(inventory);
 
@@ -102,35 +105,33 @@ namespace Inventory.Controllers
                     Console.WriteLine(ex);
                     throw;
                 }
-            }
         }
 
         public void Delete(int Id)
         {
-            using (IUnitOfWork uow = uowFactory.Create())
+            using (var uow = uowFactory.Create())
             {
                 repository.Remove(repository.GetByKey(Id));
                 uow.Save();
             }
         }
 
-        private static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source, System.Linq.Expressions.Expression<Func<TSource, TKey>> keySelector, bool ascending)
+        private static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source,
+            Expression<Func<TSource, TKey>> keySelector, bool ascending)
         {
-
             return ascending ? source.OrderBy(keySelector) : source.OrderByDescending(keySelector);
         }
 
         public void Dispose(IDisposeEquipmentView frm)
         {
-            if (frm.Display(this.Index()))
+            if (frm.Display(Index()))
             {
                 var entity = frm.SelectedEquipment;
                 entity.Active = false; // dispose
                 entity.DateDisposed = frm.DateDisposed;
 
-                this.Edit(entity);
+                Edit(entity);
             }
         }
     }
 }
-

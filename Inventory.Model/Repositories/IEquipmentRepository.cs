@@ -2,7 +2,7 @@
 
 namespace Inventory
 {
-    public partial interface IEquipmentRepository : IRepository<Equipment>
+    public interface IEquipmentRepository : IRepository<Equipment>
     {
         ICollection<Equipment> GetAll();
         ICollection<Equipment> GetAllUnassigned();
